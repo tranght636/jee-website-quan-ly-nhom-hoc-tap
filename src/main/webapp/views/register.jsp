@@ -22,6 +22,9 @@
 										id="username" placeholder="Full Name" name="username">
 							</div>
 							<div class="form-group">
+								<span id="span-email-exist" style="color:red;">Email đã tồn tại</span>
+								<span id="span-email-not-exist" style="color:blue;">Email hợp lệ</span>
+								<span id="span-check-email" style="color:green;">Đang kiểm tra email</span>
 								<input type="email" class="form-control form-control-user"
 									id="input-register-email" placeholder="Email Address" name="email">
 							</div>
