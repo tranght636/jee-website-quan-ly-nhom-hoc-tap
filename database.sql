@@ -1,5 +1,6 @@
--- CREATE SCHEMA `dbjwatjspservlet` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
--- use jwatjspservlet
+-- HTT
+-- CREATE SCHEMA `dbjeejspservlet` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
+-- use dbjeejspservlet
 
 CREATE TABLE role(
 id int NOT NULL PRIMARY KEY auto_increment,
@@ -16,7 +17,7 @@ create table users( -- dùng lưu thông thin user
 id int primary key auto_increment,
 email varchar(100) not null unique,
 username nvarchar(100),
-password varchar(100) ,
+password varchar(100) not null,
 phone_number varchar(100),
 address text,
 dob TIMESTAMP,
@@ -32,11 +33,11 @@ deactived_at TIMESTAMP -- ngày bị xóa
 
 ALTER TABLE users ADD CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role(id);
 
-INSERT INTO `jwatjspservlet`.`role` (`name`, `code`) VALUES ('quan-tri', 'admin');
-INSERT INTO `jwatjspservlet`.`role` (`name`, `code`) VALUES ('user', 'user');
+INSERT INTO `dbjeejspservlet`.`role` (`name`, `code`) VALUES ('quan-tri', 'admin');
+INSERT INTO `dbjeejspservlet`.`role` (`name`, `code`) VALUES ('user', 'user');
 
-INSERT INTO `jwatjspservlet`.`users` (`email`, `username`, `password`, `phone_number`, `address`, `dob`, `university`, `role_id`, `status`) VALUES ('vuthanh3298@gmail.com', 'vuthanh', '123', '0777933595', '40b', '1998-02-03 00:00:00', 'uit', '1', '1');
-INSERT INTO `jwatjspservlet`.`users` (`email`, `username`, `password`, `phone_number`, `address`, `dob`, `university`, `role_id`, `status`) VALUES ('tranght636@gmail.com', 'thuytrang', '123', '0352902224', 'daknong', '1996-02-16 00:00:00', 'uit', '2', '1');
+INSERT INTO `dbjeejspservlet`.`users` (`email`, `username`, `password`, `phone_number`, `address`, `dob`, `university`, `role_id`, `status`) VALUES ('vuthanh3298@gmail.com', 'vuthanh', '123', '0777933595', '40b', '1998-02-03 00:00:00', 'uit', '1', '1');
+INSERT INTO `dbjeejspservlet`.`users` (`email`, `username`, `password`, `phone_number`, `address`, `dob`, `university`, `role_id`, `status`) VALUES ('tranght636@gmail.com', 'thuytrang', '123', '0352902224', 'daknong', '1996-02-16 00:00:00', 'uit', '2', '1');
 
 -- ----------------------------
 
@@ -186,11 +187,12 @@ create table deadline(
 -- check exist tuần trong bản student_register_schedual
 
 create table user_register_schedule(-- lưu đăng ký lịch học
+id int primary key auto_increment,
 user_id int,
 constraint fk_user_register_schedule_users foreign key (user_id) references users(id),
 deadline_id int,
 constraint fk_user_register_schedule_deadline foreign key (deadline_id) references deadline(id),
-primary key (user_id, deadline_id),
+is_register bit,
 year int,-- lưu năm 
 week int, -- lưu tuần
 schedule varchar(255), -- C2-S2-C3-S3
@@ -201,31 +203,6 @@ modified_date TIMESTAMP,
 created_by int,
 modified_by int
 );
-
-create table user_seen_notification (-- lưu người xem
-notification_id int,
-constraint fk_user_seen_notification_notifications foreign key (notification_id ) references notifications(id),
-user_id int,
-constraint fk_user_seen_notification_users foreign key (user_id ) references users(id),
-seen_status bit, -- lưu người đó đã xem thông báo hay chưa
-seen_at TIMESTAMP,-- thời gian xem thông báo
-primary key (notification_id, user_id)
-);
-
-
-
-
-
-
-create table process(-- lưu tiến độ học , lưu theo bài
-user_id int,
-lesson_id int,
-constraint fk_process_users foreign key (user_id ) references users(id),
-constraint fk_process_lesson foreign key (lesson_id ) references lesson(id),
-primary key (user_id, lesson_id)
-);
-
-
 
 -- lịch admin soạn: (mã lớp, mã phòng, tên trainer, buổi, ngày, tên bài học, số lượng tham gia, )
 create table main_schedules(
@@ -249,8 +226,38 @@ created_by int,
 modified_by int
 );
 
+create table user_off(
+	main_schedual_id int,
+    constraint fk_user_of_user_register_schedule foreign key (main_schedual_id) references main_schedules(id),
+    user_id int,
+    constraint fk_user_of_users foreign key (user_id) references users(id),
+    reason text,
+    note_from_admin text,
+    is_approved int, -- -1 không duyệt, 0 đang chờ, 1 đã duyệt
+    status int,
+	created_date TIMESTAMP,
+	modified_date TIMESTAMP,
+	created_by int,
+	modified_by int
+);
 
+create table user_seen_notification (-- lưu người xem
+notification_id int,
+constraint fk_user_seen_notification_notifications foreign key (notification_id ) references notifications(id),
+user_id int,
+constraint fk_user_seen_notification_users foreign key (user_id ) references users(id),
+seen_status bit, -- lưu người đó đã xem thông báo hay chưa
+seen_at TIMESTAMP,-- thời gian xem thông báo
+primary key (notification_id, user_id)
+);
 
+create table process(-- lưu tiến độ học , lưu theo bài
+user_id int,
+lesson_id int,
+constraint fk_process_users foreign key (user_id ) references users(id),
+constraint fk_process_lesson foreign key (lesson_id ) references lesson(id),
+primary key (user_id, lesson_id)
+);
 
 create table roll_calls(-- bảng điểm danh
 main_schedule_id int,
@@ -260,6 +267,7 @@ constraint fk_roll_calls_users foreign key (user_id ) references users(id),
 roll_call_at date,
 primary key (main_schedule_id, user_id),
 status int,
+note text,
 created_date TIMESTAMP,
 modified_date TIMESTAMP,
 created_by int,
@@ -277,8 +285,8 @@ created_by int,
 modified_by int
 );
 
-INSERT INTO `jwatjspservlet`.`courses` (`name`, `description`, `status`) VALUES ('JWAT2019', 'Java web application trainning', b'1');
-INSERT INTO `jwatjspservlet`.`courses` (`name`, `status`) VALUES ('JWAT2020', b'1');
+-- INSERT INTO `dbjeejspservlet`.`courses` (`name`, `description`, `status`) VALUES ('JWAT2019', 'Java web application trainning', b'1');
+-- INSERT INTO `dbjeejspservlet`.`courses` (`name`, `status`) VALUES ('JWAT2020', b'1');
 
 
 
