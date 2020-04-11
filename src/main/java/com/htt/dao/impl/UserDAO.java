@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.htt.dao.IUserDAO;
 import com.htt.mapper.UserMapper;
 import com.htt.model.UserModel;
+import com.htt.utils.StringUtil;
 
 public class UserDAO extends AbstractDAO<UserModel> implements IUserDAO  {
 
@@ -58,6 +60,39 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDAO  {
 			} catch (SQLException e) {
 				return false;
 			}
+		}
+		return false;
+	}
+
+	@Override
+	public UserModel findOne(Integer id) {
+		String sql = "SELECT * FROM users AS u INNER JOIN role AS r ON r.id = u.role_id WHERE u.id = ?";
+		List<UserModel> users = query(sql, new UserMapper(), id);
+		return users.isEmpty() ? null : users.get(0);
+	}
+
+	@Override
+	public boolean update(UserModel userModel) {
+		try {
+			String sql = null;
+			String email = userModel.getEmail();
+			String username = userModel.getUsername();
+			String password = userModel.getPassword();
+			String phone = userModel.getPhoneNumber();
+			String address = userModel.getAddress();
+			Timestamp dob = userModel.getDob();
+			String university = userModel.getUniversity();
+			Integer id = userModel.getId();
+			if(StringUtil.makeBeautiful(password).isEmpty()) {
+				sql = "UPDATE `dbjeejspservlet`.`users` SET `email` = ?, `username` = ?, `phone_number` = ?, `address` = ?, `dob` = ?, `university` = ? WHERE (`id` = ?)";
+				update(sql, email, username, phone, address, dob, university, id);
+			} else {
+				sql = "UPDATE `dbjeejspservlet`.`users` SET `email` = ?, `username` = ?, `password` = ?, `phone_number` = ?, `address` = ?, `dob` = ?, `university` = ? WHERE (`id` = ?)";
+				update(sql, email, username, password, phone, address, dob, university, id);
+			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return false;
 	}

@@ -1,18 +1,16 @@
 package com.htt.service.impl;
 
+import javax.inject.Inject;
+
 import com.htt.constant.SystemConstant;
 import com.htt.dao.IUserDAO;
-import com.htt.dao.impl.UserDAO;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
 
 public class UserService implements IUserService {
 
-	private IUserDAO userDAO;
-
-	public UserService() {
-		userDAO = new UserDAO();
-	}
+	@Inject
+	IUserDAO userDAO;
 	
 	@Override
 	public UserModel findByEmailAndPassword(String userName, String password) {
@@ -29,5 +27,14 @@ public class UserService implements IUserService {
 	public Boolean isEmailExist(String email) {
 		return userDAO.isEmailExist(email);
 	}
-	
+
+	@Override
+	public UserModel findOne(Integer id) {
+		return userDAO.findOne(id);
+	}
+
+	@Override
+	public boolean update(UserModel userModel) {
+		return userDAO.update(userModel);
+	}
 }

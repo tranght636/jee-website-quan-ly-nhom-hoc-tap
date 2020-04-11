@@ -18,7 +18,8 @@ import com.htt.utils.SessionUtil;
 
 public class AuthorizationFilter implements Filter {
 
-    private ServletContext context;
+    @SuppressWarnings("unused")
+	private ServletContext context;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

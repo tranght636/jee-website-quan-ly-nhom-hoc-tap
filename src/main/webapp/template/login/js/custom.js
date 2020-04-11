@@ -1,32 +1,18 @@
-function hideAll(){
-	$('#span-email-exist').hide();
-	$('#span-email-not-exist').hide();
-	$('#span-check-email').hide();
+function hideMessage() {
+	$('#span-email-exist').attr("hidden", "hidden");
+	$('#btn-register').removeAttr("disabled");
 }
 
-function setMessage(type){
-	var spanExist = $('#span-email-exist');
-	var spanNotExit = $('#span-email-not-exist');
-	var spanCheck = $('#span-check-email');
-	if(type === 'notExist'){
-		hideAll();
-		spanNotExit.show();
-	} else if(type === 'exist'){
-		hideAll();
-		spanExist.show();
-	} else if(type === 'check'){
-		hideAll();
-		spanCheck.show();
-	}
+function showMessage() {
+	$('#span-email-exist').removeAttr('hidden');
+	$('#btn-register').attr("disabled", "disabled");
 }
 
 $(document).ready(function() {
-	hideAll();
 	$('#input-register-email').keyup(function() {
-		if($('#input-register-email').val() !== ''){
-			clearTimeout($(this).data('timeout'));
-			$(this).data('timeout', setTimeout(function() {
-				setMessage('check')
+		clearTimeout($(this).data('timeout'));
+		$(this).data('timeout', setTimeout(function() {
+			if ($('#input-register-email').val() !== '') {
 				var data = {
 					email : $('#input-register-email').val()
 				}
@@ -38,15 +24,16 @@ $(document).ready(function() {
 					dataType : 'json',
 					success : function(result) {
 						if (result == 1) {
-							setMessage('exist');
-						} else if (result == 0) {
-							setMessage('notExist');
+							showMessage();
+						} else{
+							hideMessage();
 						}
 					}
 				});
-			}, 500));
-		} else {
-			hideAll();
-		}
+			} else {
+				hideMessage();
+			}
+		}, 500));
+
 	});
 });

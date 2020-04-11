@@ -22,9 +22,7 @@
 										id="username" placeholder="Full Name" name="username">
 							</div>
 							<div class="form-group">
-								<span id="span-email-exist" style="color:red;">Email đã tồn tại</span>
-								<span id="span-email-not-exist" style="color:blue;">Email hợp lệ</span>
-								<span id="span-check-email" style="color:green;">Đang kiểm tra email</span>
+								<div id="span-email-exist" style="margin-left: 15px;" hidden="true"><span style="color:red;">Email đã tồn tại</span></div>
 								<input type="email" class="form-control form-control-user"
 									id="input-register-email" placeholder="Email Address" name="email">
 							</div>
@@ -56,7 +54,7 @@
 										id="dob" name="dob" title="Date of birth">
 								</div>
 							</div>
-							<button type="submit" class="btn btn-primary btn-user btn-block">
+							<button id="btn-register" type="submit" class="btn btn-primary btn-user btn-block">
 								Register Account </button>
 						</form>
 						<hr>
