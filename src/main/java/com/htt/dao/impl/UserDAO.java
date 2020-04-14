@@ -84,13 +84,29 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDAO  {
 			String university = userModel.getUniversity();
 			Integer id = userModel.getId();
 			if(StringUtil.makeBeautiful(password).isEmpty()) {
-				sql = "UPDATE `dbjeejspservlet`.`users` SET `email` = ?, `username` = ?, `phone_number` = ?, `address` = ?, `dob` = ?, `university` = ? WHERE (`id` = ?)";
+				sql = "UPDATE users SET `email` = ?, `username` = ?, `phone_number` = ?, `address` = ?, `dob` = ?, `university` = ? WHERE (`id` = ?)";
 				update(sql, email, username, phone, address, dob, university, id);
 			} else {
-				sql = "UPDATE `dbjeejspservlet`.`users` SET `email` = ?, `username` = ?, `password` = ?, `phone_number` = ?, `address` = ?, `dob` = ?, `university` = ? WHERE (`id` = ?)";
+				sql = "UPDATE users SET `email` = ?, `username` = ?, `password` = ?, `phone_number` = ?, `address` = ?, `dob` = ?, `university` = ? WHERE (`id` = ?)";
 				update(sql, email, username, password, phone, address, dob, university, id);
 			}
 			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	@Override
+	public List<UserModel> findAll() {
+		String sql = "select * from users where `status`= 1";
+		return query(sql, new UserMapper());
+	}
+	@Override
+	public Boolean deleteUser(Integer id) {
+		try {
+			String sql = "UPDATE users SET `status` = -1 where (`id` = ?) ";
+		update(sql,id);
+		return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,7 @@
 package com.htt.dao;
 
+import java.util.List;
+
 import com.htt.model.UserModel;
 
 public interface IUserDAO extends GenericDAO<UserModel> {
@@ -8,4 +10,6 @@ public interface IUserDAO extends GenericDAO<UserModel> {
 	Boolean isEmailExist(String email);
 	UserModel findOne(Integer id);
 	boolean update(UserModel userModel);
+	List<UserModel> findAll();
+	Boolean deleteUser(Integer id);
 }

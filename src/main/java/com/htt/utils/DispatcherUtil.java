@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.htt.constant.SystemConstant;
 import com.htt.model.UserModel;
 
@@ -35,5 +36,10 @@ public class DispatcherUtil {
 		} else if (userModel.getRole().getCode().equals(SystemConstant.ADMIN_ROLE)) {
 			res.sendRedirect(req.getContextPath() + "/admin/trang-chu");
 		}
+	}
+	
+	public static void send(HttpServletResponse res, Object object) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(res.getOutputStream(), object);
 	}
 }

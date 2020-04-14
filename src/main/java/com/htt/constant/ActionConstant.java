@@ -19,8 +19,10 @@ public class ActionConstant {
 	public static final Object DANH_SACH_LOP = "danhsachlop";
 	public static final Object XEP_LOP = "xeplop";
 	public static final Object CHECK_EMAIL_EXIST = "check_email_exist";
-	
-	
+	public static final Object GET_USER = "get_user";
+	public static final Object EDIT_USER = "edit_user";
+	public static final Object DELETE_USER = "delete_user";
+	public static final Object CREATE_USER = "create_user";
 	
 	
 	

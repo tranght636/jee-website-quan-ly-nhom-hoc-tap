@@ -10,7 +10,7 @@
   <i class="fa fa-bars"></i>
 </button>
 
-<h2 style="margin-right: auto;">
+<h2 style="margin-right: auto;color: #B94A48;">
 	${pagename}
 </h2>
 
