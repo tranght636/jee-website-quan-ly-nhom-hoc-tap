@@ -96,11 +96,12 @@ public class ThanhVienController extends HttpServlet {
 	private void create_user(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		UserModel userModel = FormUtil.toModel(UserModel.class, req);
 		if(userService.isEmailExist(userModel.getEmail())) {
-			DispatcherUtil.redirect(req, res, "/admin/thanh-vien?action=register&message=email_ton_tai&alert=danger");
+			DispatcherUtil.redirect(req, res, "/admin/thanh-vien?action=thanhvien&message=email_ton_tai&alert=danger");
 			return;
 		}
 		if(userService.createUser(userModel) != null) {
 			DispatcherUtil.redirect(req, res, "/admin/thanh-vien?action=thanhvien");
+			System.out.println(userService.createUser(userModel));
 		} 
 		
 	}

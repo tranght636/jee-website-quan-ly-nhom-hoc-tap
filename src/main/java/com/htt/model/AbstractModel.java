@@ -17,7 +17,7 @@ public class AbstractModel<T> {
 	private Integer page;
 	private Integer maxPageItem;
 	private Integer totalPage;
-	private Integer totalItem;
+	private Integer totalItem; 
 	private String sortName;
 	private String sortBy;
 	private String alert;

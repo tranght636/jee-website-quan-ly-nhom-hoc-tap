@@ -12,6 +12,16 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
+function hideMessage() {
+	$('.span-email-exist').attr("hidden", "hidden");
+	$('.btn-create').removeAttr("disabled");
+}
+
+function showMessage() {
+	$('.span-email-exist').removeAttr('hidden');
+	$('.btn-create').attr("disabled", "disabled");
+}
+
 $(document).ready(function() {
 	$("#btn-save-change").click(function(event) {
 		event.preventDefault();
@@ -70,7 +80,36 @@ $(document).ready(function() {
 			}
 		});
 		
-	})
+	});
+	
+	$('.input-register-email').keyup(function() {
+		var inputEmail = $(this);
+		clearTimeout(inputEmail.data('timeout'));
+		inputEmail.data('timeout', setTimeout(function() {
+			if (inputEmail	.val() !== '') {
+				var data = {
+					email : inputEmail.val()
+				}
+				$.ajax({
+					url : '/api/users?action=check_email_exist',
+					type : 'POST',
+					contentType : 'application/json',
+					data : JSON.stringify(data),
+					dataType : 'json',
+					success : function(result) {
+						if (result == 1) {
+							showMessage();
+						} else{
+							hideMessage();
+						}
+					}
+				});
+			} else {
+				hideMessage();
+			}
+		}, 500));
+	});
+	
 	
 	/*$("#btn-edit-change").click(function() {
 		var idUser = $("#user-id").val();

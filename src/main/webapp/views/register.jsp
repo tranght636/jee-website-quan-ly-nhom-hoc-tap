@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="container">
-<%@include file="/common/taglib.jsp"%>
+	<%@include file="/common/taglib.jsp"%>
 	<div class="card o-hidden border-0 shadow-lg my-5">
 		<div class="card-body p-0">
 			<!-- Nested Row within Card Body -->
@@ -9,22 +10,25 @@
 				<div class="col-lg-7">
 					<div class="p-5">
 						<c:if test="${not empty message}">
-							<div class="alert alert-${alert}">
-									${message}
-							</div>
+							<div class="alert alert-${alert}">${message}</div>
 						</c:if>
 						<div class="text-center">
 							<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
 						</div>
-						<form class="user" action='<c:url value="/register?action=register"/>' method="POST">
+						<form class="user"
+							action='<c:url value="/register?action=register"/>' method="POST">
 							<div class="form-group">
 								<input type="text" class="form-control form-control-user"
-										id="username" placeholder="Full Name" name="username">
+									id="username" placeholder="Full Name" name="username">
 							</div>
 							<div class="form-group">
-								<div id="span-email-exist" style="margin-left: 15px;" hidden="true"><span style="color:red;">Email đã tồn tại</span></div>
-								<input type="email" class="form-control form-control-user"
-									id="input-register-email" placeholder="Email Address" name="email">
+								<div class="span-email-exist" style="margin-left: 15px;"
+									hidden="true">
+									<span style="color: red;">Email đã tồn tại</span>
+								</div>
+								<input type="email" class="form-control form-control-user input-register-email"
+								 placeholder="Email Address"
+									name="email">
 							</div>
 							<div class="form-group row">
 								<div class="col-sm-6 mb-3 mb-sm-0">
@@ -47,19 +51,21 @@
 							<div class="form-group row">
 								<div class="col-sm-6 mb-3 mb-sm-0">
 									<input type="text" class="form-control form-control-user"
-									id="phone" placeholder="Phone" name="phoneNumber">
+										id="phone" placeholder="Phone" name="phoneNumber">
 								</div>
 								<div class="col-sm-6">
 									<input type="date" class="form-control form-control-user"
 										id="dob" name="dob" title="Date of birth">
 								</div>
 							</div>
-							<button id="btn-register" type="submit" class="btn btn-primary btn-user btn-block">
-								Register Account </button>
+							<button type="submit"
+								class="btn btn-primary btn-user btn-block btn-create">Register
+								Account</button>
 						</form>
 						<hr>
 						<div class="text-center">
-							<a class="small" href="<c:url value='/login?action=login'/>">Already have an account? Login!</a>
+							<a class="small" href="<c:url value='/login?action=login'/>">Already
+								have an account? Login!</a>
 						</div>
 					</div>
 				</div>

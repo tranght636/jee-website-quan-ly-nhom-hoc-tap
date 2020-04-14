@@ -138,13 +138,14 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<c:if test="${not empty message}">
+			<%-- <c:if test="${not empty message}">
 				<div class="alert alert-${alert}">${message}</div>
-			</c:if>
+			</c:if> --%>
 
 			<form id="form-profile" action="/admin/thanh-vien?action=create_user"
 				method="POST">
-				<div class="form-group row" style="margin-left: 5px; margin-top: 5px;">
+				<div class="form-group row"
+					style="margin-left: 5px; margin-top: 5px;">
 					<label for="username" class="col-sm-3 col-form-label">Tên:</label>
 					<div class="col-sm-9">
 						<input type="text"
@@ -152,16 +153,21 @@
 							id="username" placeholder="Full Name" name="username">
 					</div>
 				</div>
-				<div class="form-group row" style="margin-top: 5px; margin-left: 5px;">
-					<div id="span-email-exist" style="margin-left: 15px;" hidden="true"><span style="color:red;">Email đã tồn tại</span></div>
+				<div class="form-group row"
+					style="margin-top: 5px; margin-left: 5px;">
 					<label for="email" class="col-sm-3 col-form-label">Email</label>
 					<div class="col-sm-9">
+						<div class="span-email-exist" style="margin-left: 15px;"
+							hidden="true">
+							<span style="color: red;">Email đã tồn tại</span>
+						</div>
 						<input type="email"
-							class="form-control form-control-user ModalSizeInput"
-							id="input-register-email" placeholder="Email Address"
-							name="email">
+							class="input-register-email form-control form-control-user ModalSizeInput"
+							placeholder="Email Address"
+							name="email" >
 					</div>
 				</div>
+
 				<div class="form-group row" style="margin-left: 5px;">
 					<label for="phone" class="col-sm-3 col-form-label">Mật
 						khẩu:</label>
@@ -222,8 +228,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Đóng</button>
-					<!-- <button id="btn-edit-change" type="button" class="btn btn-primary">Lưu</button> -->
-					<button type="submit" class="btn btn-primary">Lưu</button>
+					<button type="submit"
+								class="btn btn-primary btn-create">OK</button>
 				</div>
 			</form>
 		</div>

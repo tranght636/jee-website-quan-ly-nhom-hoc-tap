@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-
+<!-- https://bootsnipp.com/snippets/2P90 -->
 <div class="container-fluid">
-	<div>
+	<div >
 		<select name="loaiThongBao" class="btnSort btn-info btn" style="background-color: white;color: black;">
-			<option value="dangkylichtraining">New</option>
+			<option value="dangkylichtraining">Mới nhất</option>
 			<option value="dangkylichtraining">a-z</option>
 			<option value="thongbaonghi">z-a</option>
 		</select>
-		<button type="button" class="btn btn-outline-danger" style="color: black;">Accept all</button>
-		<button type="button" class="btn btn-outline-danger" style="color: black;"> Deny all</button>
+		<button type="button" class="btn btn-outline-danger" style="color: black; ">Duyệt</button>
+		<button type="button" class="btn btn-outline-danger" style="color: black; "> Xóa</button>
 	</div>
 	<div class="list-group" style="margin-top: 5px;">
 	<c:forEach var = "i" begin = "1" end = "5">
