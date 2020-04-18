@@ -90,6 +90,9 @@ public class ThanhVienController extends HttpServlet {
 	}
 	
 	private void getChoDuyet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		setMessage(req);
+		List<UserModel> dsThanhVien = userService.findAllStatus0();
+		req.setAttribute("dsThanhVien", dsThanhVien);
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ChoDuyet");
 	}
 

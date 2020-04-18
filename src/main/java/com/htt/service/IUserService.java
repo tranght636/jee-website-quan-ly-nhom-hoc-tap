@@ -13,4 +13,10 @@ public interface IUserService {
 	List<UserModel> findAll();
 	Boolean deleteUser(Integer id);
 	Integer createUser(UserModel userModel);
+	List<UserModel> findAllStatus0();
+	Boolean duyetUser(Integer id);
+	//Boolean duyetUsers(ArrayList<Integer> ids);
+	Boolean duyetUsers(Integer[] ids);
+	Boolean xoaIdUsersChoDuyet(Integer[] ids);
+	Boolean xoaUserChoDuyet(Integer id);
 }

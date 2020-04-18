@@ -9,16 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.htt.constant.ActionConstant;
-import com.htt.constant.SystemConstant;
 import com.htt.model.CommonModel;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
 import com.htt.utils.DispatcherUtil;
-import com.htt.utils.FormUtil;
 import com.htt.utils.HttpUtil;
-import com.htt.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/api/users" })
 public class UserAPI extends HttpServlet {
@@ -34,14 +30,26 @@ public class UserAPI extends HttpServlet {
 				postGetUser(req, res);
 			} else if(action.equals(ActionConstant.DELETE_USER)) {
 				deleteUser(req,res);
+			}else if(action.equals(ActionConstant.DUYET_USER)) {
+				duyetUser(req,res);
+			}else if(action.equals(ActionConstant.DUYET_USERS)) {
+				duyetUsers(req,res);
+			}else if(action.equals(ActionConstant.DELETE_USERS_CHO_DUYET)) {
+				xoaUsersChoDuyet(req,res);
+			}else if(action.equals(ActionConstant.DELETE_USER_CHO_DUYET)) {
+				xoaUserChoDuyet(req,res);
 			}
 			/*
 			 * else if (action.equals(ActionConstant.EDIT_USER)) { postEditUser(req, res); }
 			 */
 		}
 	}
-
 	
+	
+
+
+
+
 
 	@Inject
 	IUserService userService;
@@ -65,6 +73,28 @@ public class UserAPI extends HttpServlet {
 		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
 		Boolean delUser=userService.deleteUser(model.getId());
 		DispatcherUtil.send(res, delUser);
+	}
+	private void duyetUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		Boolean duyetIdUser=userService.duyetUser(model.getId());
+		DispatcherUtil.send(res, duyetIdUser);
+	}
+	private void duyetUsers(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//		String ids = req.getParameter("ids"); // lấy kiểu này chưa được???
+//		System.out.println(ids);
+		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		Boolean duyetIdUsers=userService.duyetUsers(model.getIds());
+		DispatcherUtil.send(res, duyetIdUsers);
+	}
+	private void xoaUsersChoDuyet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		Boolean xoaIdUsersChoDuyet=userService.xoaIdUsersChoDuyet(model.getIds());
+		DispatcherUtil.send(res, xoaIdUsersChoDuyet);
+	}
+	private void xoaUserChoDuyet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		Boolean xoaUserChoDuyet=userService.xoaUserChoDuyet(model.getId());
+		DispatcherUtil.send(res, xoaUserChoDuyet);		
 	}
 	/*
 	 * private void postEditUser(HttpServletRequest req, HttpServletResponse res)

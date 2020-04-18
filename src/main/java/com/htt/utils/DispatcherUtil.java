@@ -22,7 +22,7 @@ public class DispatcherUtil {
 	}
 
 	public static void returnViewName(HttpServletRequest req, HttpServletResponse res, String pageName) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("/views" + pageName + ".jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/views/" + pageName + ".jsp");
 		rd.forward(req, res);
 	}
 	

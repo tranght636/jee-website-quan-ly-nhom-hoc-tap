@@ -56,4 +56,29 @@ public class UserService implements IUserService {
 		userModel.setStatus(SystemConstant.STATUS_ACTIVED);
 		return userDAO.save(userModel);
 	}
+
+	@Override
+	public List<UserModel> findAllStatus0() {
+		return userDAO.findAllStatus0();
+	}
+
+	@Override
+	public Boolean duyetUser(Integer id) {
+		return userDAO.duyetUser(id);
+	}
+
+	@Override
+	public Boolean duyetUsers(Integer[] ids) {
+		return userDAO.duyetUsers(ids);
+	}
+
+	@Override
+	public Boolean xoaIdUsersChoDuyet(Integer[] ids) {
+		return userDAO.xoaIdUsersChoDuyet(ids);
+	}
+
+	@Override
+	public Boolean xoaUserChoDuyet(Integer id) {
+		return userDAO.xoaUserChoDuyet(id);
+	}
 }

@@ -1,149 +1,268 @@
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
+        day = '' +
+        d.getDate(),
         year = d.getFullYear();
 
-    if (month.length < 2) 
+    if (month.length < 2)
         month = '0' + month;
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day;
 
     return [year, month, day].join('-');
 }
 
 function hideMessage() {
-	$('.span-email-exist').attr("hidden", "hidden");
-	$('.btn-create').removeAttr("disabled");
+    $('.span-email-exist').attr("hidden", "hidden");
+    $('.btn-create').removeAttr("disabled");
 }
 
 function showMessage() {
-	$('.span-email-exist').removeAttr('hidden');
-	$('.btn-create').attr("disabled", "disabled");
+    $('.span-email-exist').removeAttr('hidden');
+    $('.btn-create').attr("disabled", "disabled");
 }
 
 $(document).ready(function() {
-	$("#btn-save-change").click(function(event) {
-		event.preventDefault();
-		var password = $('#new-password').val();
-		var confirm = $('#confirm').val();
-		if (password !== confirm) {
-			$('#confirm-incorrect').removeAttr('hidden');
-		} else {
-			$('#confirm-incorrect').attr('hidden', 'hidden');
-			$('#form-profile').submit();
-		}
-	});
-	$(".btnSuaTaiKhoan").click(function() {
-		var idUser = $(this).attr("user-id");
-		var data = {
-			id : idUser
-		};
-		$.ajax({
-			url : '/api/users?action=get_user',
-			type : 'POST',
-			contentType : 'application/json',
-			data : JSON.stringify(data),
-			dataType : 'json',
-			success : function(result) {
-				if (result !== null) {
-					$("#user-id").val(result.id);
-					$("#email").val(result.email);
-					$("#username").val(result.username);
-					$("#phone").val(result.phoneNumber);
-					$("#address").val(result.address);
-					$("#dob").val(formatDate(result.dob));
-					$("#university").val(result.university);
-				}
-			}
-		});
-	});
-	$(".btnDeleteTaiKhoan").click(function(){
-		var idUser = $(this).attr("user-id");
-		var This = $(this);
-		var data = {
-			id : idUser
-		};
-		$.ajax({
-			url : '/api/users?action=delete_user',
-			type : 'POST',
-			contentType : 'application/json',
-			data : JSON.stringify(data),
-			dataType : 'json',
-			success : function(result) {
-				if (result == true) {
-					This.closest("a").remove();
-				}
-				else {
-					alert("bug");
-				}
-			}
-		});
-		
-	});
-	
-	$('.input-register-email').keyup(function() {
-		var inputEmail = $(this);
-		clearTimeout(inputEmail.data('timeout'));
-		inputEmail.data('timeout', setTimeout(function() {
-			if (inputEmail	.val() !== '') {
-				var data = {
-					email : inputEmail.val()
-				}
-				$.ajax({
-					url : '/api/users?action=check_email_exist',
-					type : 'POST',
-					contentType : 'application/json',
-					data : JSON.stringify(data),
-					dataType : 'json',
-					success : function(result) {
-						if (result == 1) {
-							showMessage();
-						} else{
-							hideMessage();
-						}
-					}
-				});
-			} else {
-				hideMessage();
-			}
-		}, 500));
-	});
-	
-	
-	/*$("#btn-edit-change").click(function() {
-		var idUser = $("#user-id").val();
-		var username = $("#username").val();
-		var staticEmail=$("#email").val();
-		var phone=$("#phone").val();
-		var address=$("#address").val();
-		var dob=$("#dob").val();
-		var university=$("#university").val();
-		var data = {
-			id : idUser,
-			username:username,
-			email :staticEmail,
-			phoneNumber:phone,
-			address :address,
-			dob:dob,
-			university:university
-		};
-		console.log(data);
-		$.ajax({
-			url : '/api/users?action=edit_user',
-			type : 'POST',
-			contentType : 'application/json',
-			data : JSON.stringify(data),
-			dataType : 'json',
-			success : function(result) {
-				if (result === 1) {
-					window.location = "/admin/thanh-vien?action=thanhvien&message=update_thanh_cong&alert=success";
-				}
-				else{
-					window.location = "/admin/thanh-vien?action=thanhvien&message=update_that_bai&alert=warning";
-				}
-			}
-		});
-	});
-*/
+    $("#btn-save-change").click(function(event) {
+        event.preventDefault();
+        var password = $('#new-password').val();
+        var confirm = $('#confirm').val();
+        if (password !== confirm) {
+            $('#confirm-incorrect').removeAttr('hidden');
+        } else {
+            $('#confirm-incorrect').attr('hidden', 'hidden');
+            $('#form-profile').submit();
+        }
+    });
+    $(".btnSuaTaiKhoan").click(function() {
+        var idUser = $(this).attr("user-id");
+        var data = {
+            id: idUser
+        };
+        $.ajax({
+            url: '/api/users?action=get_user',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result !== null) {
+                    $("#user-id").val(result.id);
+                    $("#email").val(result.email);
+                    $("#username").val(result.username);
+                    $("#phone").val(result.phoneNumber);
+                    $("#address").val(result.address);
+                    $("#dob").val(formatDate(result.dob));
+                    $("#university").val(result.university);
+                }
+            }
+        });
+    });
+    $(".btnDeleteTaiKhoan").click(function() {
+        var idUser = $(this).attr("user-id");
+        var This = $(this);
+        var data = {
+            id: idUser
+        };
+        $.ajax({
+            url: '/api/users?action=delete_user',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    This.closest("a").remove();
+                } else {
+                    alert("bug");
+                }
+            }
+        });
+
+    });
+
+    $('.input-register-email').keyup(function() {
+        var inputEmail = $(this);
+        clearTimeout(inputEmail.data('timeout'));
+        inputEmail.data('timeout', setTimeout(function() {
+            if (inputEmail.val() !== '') {
+                var data = {
+                    email: inputEmail
+                        .val()
+                }
+                $.ajax({
+                    url: '/api/users?action=check_email_exist',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function(result) {
+                        if (result == 1) {
+                            showMessage();
+                        } else {
+                            hideMessage();
+                        }
+                    }
+                });
+            } else {
+                hideMessage();
+            }
+        }, 500));
+    });
+    /* btn duyệt tài khoản */
+    $(".btnDuyetTaiKhoan").click(function() {
+        var idUser = $(this).attr("user-id");
+        var This = $(this);
+        var data = {
+            id: idUser
+        };
+        $.ajax({
+            url: '/api/users?action=duyet_user',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    This.closest("tr").remove();
+                } else {
+                    alert("bug");
+                }
+            }
+        });
+
+    });
+    /* chon all tài khoản */
+    $("#checkedAll").change(function() {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(".checkSingle").each(function() {
+                this.checked = false;
+            });
+        }
+    });
+
+    $(".checkSingle").click(function() {
+        if ($(this).is(":checked")) {
+            var isAllChecked = 0;
+
+            $(".checkSingle").each(function() {
+                if (!this.checked)
+                    isAllChecked = 1;
+            });
+
+            if (isAllChecked === 0) {
+                $("#checkedAll").prop("checked", true);
+            }
+        } else {
+            $("#checkedAll").prop("checked", false);
+        }
+    });
+    /* duyệt tài khoản được chọn */
+    $("#btnDuyetTaiKhoanDuocChon").click(function() {
+        var arr = [];
+        var checkbox = document
+            .getElementsByName('checkSingle');
+        for (var i = 0; i < checkbox.length; i++) {
+            if (checkbox[i].checked === true) {
+                arr.push(checkbox[i].value);
+            }
+        }
+        var data = {
+            ids: arr
+        }
+        $.ajax({
+            url: '/api/users?action=duyet_users',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    window.location = "/admin/thanh-vien-cho-duyet?action=choduyet";
+                } else {
+                    alert("bug");
+                }
+            }
+        });
+
+    });
+    /* btn Xóa tài khoản chờ duyệt*/
+    $(".delete-duyet").click(function() {
+        var idUser = $(this).attr("user-id");
+        var This = $(this);
+        var data = {
+            id: idUser
+        };
+        $.ajax({
+            url: '/api/users?action=delete_user_cho_duyet',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    This.closest("tr").remove();
+                } else {
+                    alert("bug");
+                }
+            }
+        });
+
+    });
+    
+    /* Xóa danh sách tài khoản chờ duyệt được chọn */
+    $("#btnXoaTaiKhoanDuocChon").click(function() {
+        var arr = [];
+        var checkbox = document
+            .getElementsByName('checkSingle');
+        for (var i = 0; i < checkbox.length; i++) {
+            if (checkbox[i].checked === true) {
+                arr.push(checkbox[i].value);
+            }
+        }
+        var data = {
+            ids: arr
+        }
+        $.ajax({
+            url: '/api/users?action=delete_users_cho_duyet',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    window.location = "/admin/thanh-vien-cho-duyet?action=choduyet";
+                } else {
+                    alert("bug");
+                }
+            }
+        });
+
+    });
+    
+
+    /*
+     * $("#btn-edit-change").click(function() { var idUser =
+     * $("#user-id").val(); var username = $("#username").val();
+     * var staticEmail=$("#email").val(); var
+     * phone=$("#phone").val(); var address=$("#address").val();
+     * var dob=$("#dob").val(); var
+     * university=$("#university").val(); var data = { id :
+     * idUser, username:username, email :staticEmail,
+     * phoneNumber:phone, address :address, dob:dob,
+     * university:university }; console.log(data); $.ajax({ url :
+     * '/api/users?action=edit_user', type : 'POST', contentType :
+     * 'application/json', data : JSON.stringify(data), dataType :
+     * 'json', success : function(result) { if (result === 1) {
+     * window.location =
+     * "/admin/thanh-vien?action=thanhvien&message=update_thanh_cong&alert=success"; }
+     * else{ window.location =
+     * "/admin/thanh-vien?action=thanhvien&message=update_that_bai&alert=warning"; } }
+     * }); });
+     */
 });

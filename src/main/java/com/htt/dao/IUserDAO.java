@@ -12,4 +12,9 @@ public interface IUserDAO extends GenericDAO<UserModel> {
 	boolean update(UserModel userModel);
 	List<UserModel> findAll();
 	Boolean deleteUser(Integer id);
+	List<UserModel> findAllStatus0();
+	Boolean duyetUser(Integer id);
+	Boolean duyetUsers(Integer[] ids);
+	Boolean xoaIdUsersChoDuyet(Integer[] ids);
+	Boolean xoaUserChoDuyet(Integer id);
 }

@@ -31,7 +31,7 @@
 				class="list-group-item list-group-item-action flex-column align-items-start ">
 				<div class="d-flex w-100 justify-content-between">
 					<h5 class="mb-1 a-list-users">${thanhVien.username}</h5>
-					<small class="text-muted">Jwat 01</small>
+					<small class="text-muted">Jwat 01 bỏ tên lớp vào đây</small>
 				</div> <small class="text-muted">SĐT: ${thanhVien.phoneNumber} -
 					Email: ${thanhVien.email} - SN: <fmt:formatDate
 						pattern="dd-MM-yyyy" value="${thanhVien.dob}" /> - Địa chỉ:

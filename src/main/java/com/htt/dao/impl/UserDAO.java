@@ -105,7 +105,75 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDAO  {
 	public Boolean deleteUser(Integer id) {
 		try {
 			String sql = "UPDATE users SET `status` = -1 where (`id` = ?) ";
-		update(sql,id);
+			update(sql,id);
+		return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public List<UserModel> findAllStatus0() {
+		String sql = "select * from users where `status`= 0";
+		return query(sql, new UserMapper());
+	}
+
+	@Override
+	public Boolean duyetUser(Integer id) {
+		try {
+			String sql = "UPDATE users SET `status` = 1 where (`id` = ?) ";
+			update(sql,id);
+		return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean duyetUsers(Integer[] ids) {
+		try {
+			String sql = "UPDATE users SET `status` = 1 where id in ( ";
+			String listId= ids[0]+"";
+			for (int i = 1; i < ids.length; i++) {
+				
+				listId += ","+ids[i];
+			}
+			listId += ")";
+			sql+=listId;
+			update(sql);
+		return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean xoaIdUsersChoDuyet(Integer[] ids) {
+		try {
+			String sql = "DELETE FROM users where id in ( ";
+			String listId= ids[0]+"";
+			for (int i = 1; i < ids.length; i++) {
+				
+				listId += ","+ids[i];
+			}
+			listId += ")";
+			sql+=listId;
+			update(sql);
+		return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean xoaUserChoDuyet(Integer id) {
+		try {
+			String sql = "DELETE FROM users where (`id` = ?) ";
+			update(sql,id);
 		return true;
 		} catch (Exception e) {
 			e.printStackTrace();

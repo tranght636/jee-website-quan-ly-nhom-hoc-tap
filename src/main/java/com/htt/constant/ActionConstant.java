@@ -23,7 +23,9 @@ public class ActionConstant {
 	public static final Object EDIT_USER = "edit_user";
 	public static final Object DELETE_USER = "delete_user";
 	public static final Object CREATE_USER = "create_user";
-	
-	
+	public static final Object DUYET_USER = "duyet_user";
+	public static final Object DUYET_USERS = "duyet_users";
+	public static final Object DELETE_USERS_CHO_DUYET = "delete_users_cho_duyet";
+	public static final Object DELETE_USER_CHO_DUYET = "delete_user_cho_duyet";
 	
 }

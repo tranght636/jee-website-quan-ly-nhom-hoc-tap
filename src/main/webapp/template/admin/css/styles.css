@@ -20,6 +20,14 @@
 	right: 5px;
 	color: #8f8fa8
 }
+.delete-duyet:before {
+	content: "\f014";
+	font-family: "FontAwesome";
+	position: absolute;
+	right: 25px;
+	color: #8f8fa8
+}
+
 /* .filter:before {
 	content: "\f0b0";
 	font-family: "FontAwesome";
