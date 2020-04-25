@@ -37,7 +37,7 @@
 </li>
 
 <li class="nav-item">
-  <a class="nav-link" href="<c:url value="/admin/thong-bao-deadline"/>">
+  <a class="nav-link" href="<c:url value="/admin/thong-bao-deadline?action=thong_bao_va_deadline"/>">
     <i class="fas fa-fw fa-table"></i>
     <span>Thông báo & Deadline</span></a>
 </li>

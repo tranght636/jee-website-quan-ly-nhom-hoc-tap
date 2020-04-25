@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/htt/api/UserAPI.java=UTF-8
 encoding//src/main/java/com/htt/controller/admin/KhoaHocController.java=UTF-8
+encoding//src/main/java/com/htt/controller/admin/ThongBaoVaDeadlineController.java=UTF-8
 encoding//src/main/resources/message.properties=UTF-8
 encoding//src/main/resources/page_name.properties=UTF-8
-encoding/<project>=UTF-8
 encoding/database.sql=UTF-8

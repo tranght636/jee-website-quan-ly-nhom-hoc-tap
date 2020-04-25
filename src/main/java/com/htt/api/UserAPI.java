@@ -13,8 +13,8 @@ import com.htt.constant.ActionConstant;
 import com.htt.model.CommonModel;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
+import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
-import com.htt.utils.HttpUtil;
 
 @WebServlet(urlPatterns = { "/api/users" })
 public class UserAPI extends HttpServlet {
@@ -50,13 +50,12 @@ public class UserAPI extends HttpServlet {
 
 
 
-
 	@Inject
 	IUserService userService;
 
 	private void postCheckEmailExist(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		if (userService.isEmailExist(model.getEmail())) {
 			DispatcherUtil.send(res, 1);
 		} else {
@@ -65,34 +64,32 @@ public class UserAPI extends HttpServlet {
 	}
 
 	private void postGetUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		UserModel user = userService.findOne(model.getId());
 		DispatcherUtil.send(res, user);
 	}
 	private void deleteUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		Boolean delUser=userService.deleteUser(model.getId());
 		DispatcherUtil.send(res, delUser);
 	}
 	private void duyetUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		Boolean duyetIdUser=userService.duyetUser(model.getId());
 		DispatcherUtil.send(res, duyetIdUser);
 	}
 	private void duyetUsers(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-//		String ids = req.getParameter("ids"); // lấy kiểu này chưa được???
-//		System.out.println(ids);
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		Boolean duyetIdUsers=userService.duyetUsers(model.getIds());
 		DispatcherUtil.send(res, duyetIdUsers);
 	}
 	private void xoaUsersChoDuyet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		Boolean xoaIdUsersChoDuyet=userService.xoaIdUsersChoDuyet(model.getIds());
 		DispatcherUtil.send(res, xoaIdUsersChoDuyet);
 	}
 	private void xoaUserChoDuyet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		CommonModel model = HttpUtil.of(req.getReader()).toModel(CommonModel.class);
+		CommonModel model = ConvertUtil.toModelOfAPI(CommonModel.class, req);
 		Boolean xoaUserChoDuyet=userService.xoaUserChoDuyet(model.getId());
 		DispatcherUtil.send(res, xoaUserChoDuyet);		
 	}

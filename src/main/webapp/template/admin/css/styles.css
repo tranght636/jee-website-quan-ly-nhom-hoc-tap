@@ -73,6 +73,7 @@
 	width: 300px;
 	border-radius: 4px;
 	border: 1px solid #999;
+	
 }
 
 .select-filter {
@@ -274,4 +275,18 @@ ul li a {
 tbody tr {
   display: table;
   width: 100%;
+}
+/* thông báo và deadline  */
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	color: f3f3f3;
+	background-color: transparent;
+	border-color: transparent transparent f3f3f3;
+	border-bottom: 4px solid !important;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#tabs .nav-tabs .nav-link {
+	color: #B94A48;
+	font-size: 20px;
 }

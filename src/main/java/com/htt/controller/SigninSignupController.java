@@ -17,8 +17,8 @@ import com.htt.constant.UrlConstant;
 import com.htt.form.UserForm;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
+import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
-import com.htt.utils.FormUtil;
 import com.htt.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/login", "/register", "/logout", "/check-session" })
@@ -100,9 +100,8 @@ public class SigninSignupController extends HttpServlet {
 	}
 	
 	
-	
 	private void postLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		UserForm userForm = FormUtil.toModel(UserForm.class, req);
+		UserForm userForm = ConvertUtil.toModelOfController(UserForm.class, req);
 		UserModel userModel = userService.findByEmailAndPassword(userForm.getEmail(), userForm.getPassword());
 		if (userModel == null) {
 			DispatcherUtil.redirect(req, res, "/login?action=login&message=username_password_invalid&alert=danger");
@@ -123,7 +122,7 @@ public class SigninSignupController extends HttpServlet {
 	
 	private void postRegister(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//		req.setCharacterEncoding("UTF-8");
-		UserModel userModel = FormUtil.toModel(UserModel.class, req);
+		UserModel userModel = ConvertUtil.toModelOfController(UserModel.class, req);
 		if(userService.isEmailExist(userModel.getEmail())) {
 			DispatcherUtil.redirect(req, res, "/register?action=register&message=email_ton_tai&alert=danger");
 			return;

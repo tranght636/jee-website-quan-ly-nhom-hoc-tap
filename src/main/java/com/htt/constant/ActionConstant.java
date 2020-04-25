@@ -28,4 +28,9 @@ public class ActionConstant {
 	public static final Object DELETE_USERS_CHO_DUYET = "delete_users_cho_duyet";
 	public static final Object DELETE_USER_CHO_DUYET = "delete_user_cho_duyet";
 	
+	public static final Object THONG_BAO_VA_DEADLINE = "thong_bao_va_deadline";
+	public static final Object ADD_THONG_BAO = "add_thong_bao";
+	public static final Object EDIT_THONG_BAO = "edit_thong_bao";
+	public static final Object CREATE_THONG_BAO = "create_thong_bao";
+	
 }

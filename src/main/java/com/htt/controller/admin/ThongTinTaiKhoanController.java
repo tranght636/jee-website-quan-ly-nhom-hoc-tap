@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.htt.constant.SystemConstant;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
+import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
-import com.htt.utils.FormUtil;
 import com.htt.utils.SessionUtil;
 @WebServlet(urlPatterns = { "/admin/thong-tin-tai-khoan"})
 public class ThongTinTaiKhoanController extends HttpServlet {
@@ -24,7 +24,6 @@ public class ThongTinTaiKhoanController extends HttpServlet {
 	IUserService userService;
 	
 	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
-	
 	private void setMessage(HttpServletRequest req) {
 		String message = req.getParameter("message");
 		if (message != null) {
@@ -42,7 +41,7 @@ public class ThongTinTaiKhoanController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		UserModel userModel = FormUtil.toModel(UserModel.class, req);
+		UserModel userModel = ConvertUtil.toModelOfController(UserModel.class, req);
 		if(userService.update(userModel)) {
 			UserModel user = userService.findOne(userModel.getId());
 			SessionUtil.getInstance().putValue(req, SystemConstant.MODEL, user);

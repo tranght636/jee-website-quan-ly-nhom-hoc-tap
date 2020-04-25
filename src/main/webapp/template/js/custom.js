@@ -22,7 +22,7 @@ function showMessage() {
     $('.span-email-exist').removeAttr('hidden');
     $('.btn-create').attr("disabled", "disabled");
 }
-
+var editor='';
 $(document).ready(function() {
     $("#btn-save-change").click(function(event) {
         event.preventDefault();
@@ -244,25 +244,32 @@ $(document).ready(function() {
         });
 
     });
-    
+    //ckeditor
+    editor= CKEDITOR.replace('editorContentThongBao');
+   /* $("#btn-save-add-Thong-Bao").click(function() {
+        var title = $('#title').val();
+       // var toClass = $('#confirm').val();
+       
+        var data = {
+        		title: title,
+        }
+        alert("btn-save-add-Thong-Bao");
+      // data["content"]=editor.getdata();
+        $.ajax({
+            url: '/api/thong-bao-deadline?action=add_thong_bao',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadline";
+                } else {
+                    alert("bug");
+                }
+            }
+        });
 
-    /*
-     * $("#btn-edit-change").click(function() { var idUser =
-     * $("#user-id").val(); var username = $("#username").val();
-     * var staticEmail=$("#email").val(); var
-     * phone=$("#phone").val(); var address=$("#address").val();
-     * var dob=$("#dob").val(); var
-     * university=$("#university").val(); var data = { id :
-     * idUser, username:username, email :staticEmail,
-     * phoneNumber:phone, address :address, dob:dob,
-     * university:university }; console.log(data); $.ajax({ url :
-     * '/api/users?action=edit_user', type : 'POST', contentType :
-     * 'application/json', data : JSON.stringify(data), dataType :
-     * 'json', success : function(result) { if (result === 1) {
-     * window.location =
-     * "/admin/thanh-vien?action=thanhvien&message=update_thanh_cong&alert=success"; }
-     * else{ window.location =
-     * "/admin/thanh-vien?action=thanhvien&message=update_that_bai&alert=warning"; } }
-     * }); });
-     */
+    });*/
+   
 });

@@ -12,12 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
-import com.htt.constant.SystemConstant;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
+import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
-import com.htt.utils.FormUtil;
-import com.htt.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/admin/thanh-vien", "/admin/thanh-vien-cho-duyet" })
 public class ThanhVienController extends HttpServlet {
@@ -55,9 +53,8 @@ public class ThanhVienController extends HttpServlet {
 		}
 	}
 	private void editUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		UserModel userModel = FormUtil.toModel(UserModel.class, req);
+		UserModel userModel = ConvertUtil.toModelOfController(UserModel.class, req);
 		if(userService.update(userModel)) {
-			UserModel user = userService.findOne(userModel.getId());
 			DispatcherUtil.redirect(req, res, "/admin/thanh-vien?action=thanhvien&message=update_thanh_cong&alert=success");
 		} else {
 			DispatcherUtil.redirect(req, res, "/admin/thanh-vien?action=thanhvien&message=update_that_bai&alert=warning");
@@ -97,7 +94,7 @@ public class ThanhVienController extends HttpServlet {
 	}
 
 	private void create_user(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		UserModel userModel = FormUtil.toModel(UserModel.class, req);
+		UserModel userModel = ConvertUtil.toModelOfController(UserModel.class, req);
 		if(userService.isEmailExist(userModel.getEmail())) {
 			DispatcherUtil.redirect(req, res, "/admin/thanh-vien?action=thanhvien&message=email_ton_tai&alert=danger");
 			return;

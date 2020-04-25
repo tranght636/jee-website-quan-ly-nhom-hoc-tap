@@ -98,8 +98,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 			}
 		}
 	}
-	
-
 	protected void setParameter(PreparedStatement statement, Object... parameters) {
 		try {
 			for (int i = 0; i < parameters.length; i++) {
@@ -113,6 +111,8 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 					statement.setInt(index, (Integer) parameter);
 				} else if (parameter instanceof Timestamp) {
 					statement.setTimestamp(index, (Timestamp) parameter);
+				} else if (parameter == null) {
+					statement.setNull(index, 0);
 				}
 			}
 		} catch (SQLException e) {
