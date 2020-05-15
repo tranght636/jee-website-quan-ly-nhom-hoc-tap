@@ -10,7 +10,7 @@
 </head>
 <body>
 	<!-- <form id="form-profile" action="/admin/thong-bao-deadline?action=create_thong_bao" method="POST">  -->
-	<textarea id="thong-bao-id" hidden="true">${thongBao.id}</textarea>>
+	<textarea id="deadline-id" hidden="true">${deadline.id}</textarea>>
 	<div class="form-group row">
 		<label for="newpassword" class="col-sm-2 col-form-label">Lớp:</label>
 		<div class="col-sm-10">
@@ -31,7 +31,7 @@
 			đề:</label>
 		<div class="col-sm-10">
 			<textarea name="title" id="title" class="form-control" rows="1"
-				style="width: 100%;">${thongBao.title}</textarea>
+				style="width: 100%;">${deadline.title}</textarea>
 		</div>
 	</div>
 	<div class="form-group row">
@@ -40,7 +40,7 @@
 		<div class="col-sm-10">
 			<textarea id="editorContentThongBao" name="editorContentThongBao"
 				cols="80" rows="5" style="width: 100%;">
-				${thongBao.content}
+				${deadline.content}
 				</textarea>
 		</div>
 	</div>

@@ -44,7 +44,7 @@
 		<div class="form-group row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-10">
-				<button id="btn-save-add-Thong-Bao" type="submit"
+				<button id="btn-save-add-Deadline" type="submit"
 					class="btn btn-primary mb-2">Lưu</button>
 			</div>
 		</div>

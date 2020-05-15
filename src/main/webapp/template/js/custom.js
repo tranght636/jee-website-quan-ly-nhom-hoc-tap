@@ -246,15 +246,14 @@ $(document).ready(function() {
     });
     //ckeditor
     editor= CKEDITOR.replace('editorContentThongBao');
-   /* $("#btn-save-add-Thong-Bao").click(function() {
+    $("#btn-save-add-Thong-Bao").click(function() {
         var title = $('#title').val();
        // var toClass = $('#confirm').val();
        
         var data = {
         		title: title,
         }
-        alert("btn-save-add-Thong-Bao");
-      // data["content"]=editor.getdata();
+       data["content"]=editor.getData();
         $.ajax({
             url: '/api/thong-bao-deadline?action=add_thong_bao',
             type: 'POST',
@@ -269,7 +268,81 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+    
+    /* btn sửa tài khoản*/
+    
+    $("#btn-save-edit-Thong-Bao").click(function() {
+    	var idThongBao = $('#thong-bao-id').val();
+        var title = $('#title').val();
+        var data = {
+        		id:idThongBao,
+        		title: title,
+        }
+       data["content"]=editor.getData();
+        $.ajax({
+            url: '/api/thong-bao-deadline?action=save_edit_thong_bao',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadlinemessage=update_thanh_cong&alert=success";
+                } else {
+                	window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadline&message=update_that_bai&alert=warning";
+                    
+                }
+            }
+        });
+    });
+    $(".btndeleteThongBao").click(function() {
+        var idThongBao = $(this).attr("id-Thong-Bao");
+        var This = $(this);
+        var data = {
+            id: idThongBao
+        };
+        $.ajax({
+            url: '/api/thong-bao-deadline?action=delete_thong_bao',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    This.closest("li").remove();
+                } else {
+                    alert("bug");
+                }
+            }
+        });
 
-    });*/
-   
+    });
+    // deadline
+    
+    $("#btn-save-add-Deadline").click(function() {
+        var title = $('#title').val();
+       // var toClass = $('#confirm').val();
+       
+        var data = {
+        		title: title,
+        }
+       data["content"]=editor.getData();
+        $.ajax({
+            url: '/api/thong-bao-deadline?action=add_deadline',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result === true) {
+                    window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadline";
+                } else {
+                    alert("bug");
+                }
+            }
+        });
+    });
+    
+    
 });
