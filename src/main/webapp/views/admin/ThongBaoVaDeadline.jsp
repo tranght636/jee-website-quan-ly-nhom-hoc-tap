@@ -26,14 +26,34 @@
 					</nav>
 					<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent"
 						style="width: 100%;">
-						<div class="tab-pane fade show active" id="nav-home"
-							role="tabpanel" aria-labelledby="nav-ThongBao-tab">
-							<%@ include file="/views/admin/ThongBao.jsp"%>
-						</div>
-						<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-							aria-labelledby="nav-Deadline-tab">
-							<%@ include file="/views/admin/Deadline.jsp"%>
-						</div>
+						<c:choose>
+						<c:when test="${tab==2}">
+							<div class="tab-pane fade " id="nav-home"
+								role="tabpanel" aria-labelledby="nav-ThongBao-tab">
+								<%@ include file="/views/admin/ThongBao.jsp"%>
+							</div>
+							<div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+								aria-labelledby="nav-Deadline-tab">
+								<%@ include file="/views/admin/Deadline.jsp"%>
+							</div>
+					  	</c:when>
+					 	<c:otherwise>
+					    	<div class="tab-pane fade show active" id="nav-home"
+								role="tabpanel" aria-labelledby="nav-ThongBao-tab">
+								<%@ include file="/views/admin/ThongBao.jsp"%>
+							</div>
+							<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+								aria-labelledby="nav-Deadline-tab">
+								<%@ include file="/views/admin/Deadline.jsp"%>
+							</div>
+					  	</c:otherwise>
+					</c:choose>
+					
+					
+					
+					
+						<!-- giữ nguyên tab khi thao tác -->
+						
 					</div>
 				</div>
 			</div>

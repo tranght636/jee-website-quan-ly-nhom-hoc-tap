@@ -16,8 +16,7 @@ public class DeadlineMapper implements RowMapper<DeadlineModel>{
 			deadline.setToClass(resultSet.getString("to_classes"));
 			deadline.setDueDate(resultSet.getTimestamp("due_date"));
 			deadline.setIsRegister(resultSet.getBoolean("is_register"));
-			deadline.setYear(resultSet.getInt("year"));
-			deadline.setWeek(resultSet.getInt("week"));
+			deadline.setWeekInYear(resultSet.getString("week_in_year"));
 			deadline.setStatus(resultSet.getInt("status"));
 			deadline.setCreatedDate(resultSet.getTimestamp("created_date"));
 			deadline.setModifiedDate(resultSet.getTimestamp("modified_date"));

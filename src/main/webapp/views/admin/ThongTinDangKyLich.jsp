@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
 <!-- start add user -->
 <div class="container-fluid">
 	<div class="input-group md-form form-sm form-2 pl-0 "
@@ -48,40 +49,8 @@
 		</select>
 		
 	</div>
-	<!-- trang -->
-	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-	<!-- trang -->
-	<table class="table table-striped table-bordered"
-		style="text-align: center;">
+	<table class="table table-bordered table-hover"
+		style="text-align: center; color: black;">
 		<thead>
 			<tr>
 				<th scope="col" rowspan="2">STT</th>
@@ -112,65 +81,29 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td class="d-flex w-100 justify-content-between">Hoàng Thùy
-					Trang <small class="text-muted">jwat 01 </small>
-				</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-			</tr>
-			<tr>
-				<th scope="row">1</th>
-				<td class="d-flex w-100 justify-content-between">Hoàng Thùy
-					Trang <small class="text-muted">jwat 01 </small>
-				</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-			</tr>
-			<tr>
-				<th scope="row">1</th>
-				<td class="d-flex w-100 justify-content-between">Hoàng Thùy
-					Trang <small class="text-muted">jwat 01 </small>
-				</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-				<td>x</td>
-			</tr>
+			<c:forEach var = "i" begin = "0" end = "${dsDangKyLich.size()}" >
+				<tr>
+					<th scope="row">${i+1}</th>
+					<td class="d-flex w-100 justify-content-between">${dsDangKyLich.get(i).getName()}
+					<small class="text-muted">jwat 01 </small>
+					</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+					<td>x</td>
+				</tr>
+			</c:forEach>
+			
 		</tbody>
 	</table>
+	</div>

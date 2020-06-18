@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
+import com.htt.entity.UserEntity;
 import com.htt.model.UserModel;
 import com.htt.service.IUserService;
+import com.htt.service2.UserService;
 import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
 
@@ -22,6 +24,8 @@ public class ThanhVienController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	IUserService userService;
+	@Inject
+	UserService userService2;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String action = req.getParameter("action");
@@ -40,9 +44,7 @@ public class ThanhVienController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String action = req.getParameter("action");
 		if (action != null) {
-			if (action.equals(ActionConstant.THANH_VIEN)) {
-				postThanhVien(req, res);
-			} else if (action.equals(ActionConstant.CHO_DUYET)) {
+			if (action.equals(ActionConstant.CHO_DUYET)) {
 				getChoDuyet(req, res);
 			}else if(action.equals(ActionConstant.EDIT_USER)) {
 				editUser(req,res);
@@ -61,13 +63,6 @@ public class ThanhVienController extends HttpServlet {
 		}
 	}
 
-
-
-	private void postThanhVien(HttpServletRequest req, HttpServletResponse res) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 	
 	private void setMessage(HttpServletRequest req) {
@@ -81,14 +76,16 @@ public class ThanhVienController extends HttpServlet {
 
 	private void getThanhVien(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		setMessage(req);
-		List<UserModel> dsThanhVien = userService.findAll();
+		//List<UserModel> dsThanhVien = userService.findAll();
+		
+		List<UserEntity> dsThanhVien = userService2.selectAll(1);
 		req.setAttribute("dsThanhVien", dsThanhVien);
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "thanhVien");
 	}
 	
 	private void getChoDuyet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		setMessage(req);
-		List<UserModel> dsThanhVien = userService.findAllStatus0();
+		List<UserEntity> dsThanhVien = userService2.selectAll(0);
 		req.setAttribute("dsThanhVien", dsThanhVien);
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ChoDuyet");
 	}

@@ -1,6 +1,7 @@
 package com.htt.controller.admin;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,8 +34,25 @@ public class LichController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		super.doPost(req, res);
 	}
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
+	
+	private void setMessage(HttpServletRequest req) {
+		String message = req.getParameter("message");
+		if (message != null) {
+			String alert = req.getParameter("alert");
+			req.setAttribute("message", resourceBundle.getString(message));
+			req.setAttribute("alert", alert);
+		}
+	}
 
 	private void getThongTinDangKyLich(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+		setMessage(req);
+		
+		//List<UserEntity> dsThanhVien = userService2.selectAll(1);
+		//req.setAttribute("dsThanhVien", dsThanhVien);
+		
+		
+		
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
 		
 	}

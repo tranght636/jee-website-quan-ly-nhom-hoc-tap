@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
+import com.htt.entity.ThongBaoEntity;
 import com.htt.model.DeadlineModel;
 import com.htt.model.ThongBaoModel;
 import com.htt.service.IDeadlineService;
 import com.htt.service.IThongBaoService;
+import com.htt.service2.ThongBaoService;
 import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
 
@@ -27,51 +29,78 @@ public class ThongBaoVaDeadlineAPI extends HttpServlet {
 		String action = req.getParameter("action");
 		if (action != null) {
 			if (action.equals(ActionConstant.ADD_THONG_BAO)) {
-				createThongBao(req, res);
-			}else if(action.equals(ActionConstant.SAVE_EDIT_THONG_BAO)) {
-				//getThongBaoById(req, res);
-				saveEditThongBao(req, res);
-			}else if(action.equals(ActionConstant.DELETE_THONG_BAO)) {
-				deleteThongBao(req, res);
-			}else if (action.equals(ActionConstant.ADD_DEADLINE)) {
-				createDeadline(req, res);
+				postCreateThongBao(req, res);
+			} else if (action.equals(ActionConstant.SAVE_EDIT_THONG_BAO)) {
+				// getThongBaoById(req, res);
+				postSaveEditThongBao(req, res);
+			} else if (action.equals(ActionConstant.DELETE_THONG_BAO)) {
+				postDeleteThongBao(req, res);
+			} else if (action.equals(ActionConstant.ADD_DEADLINE)) {
+				postCreateDeadline(req, res);
+			} else if (action.equals(ActionConstant.SAVE_EDIT_DEADLINE)) {
+				postSaveEditDeadline(req, res);
+			} else if (action.equals(ActionConstant.DELETE_DEADLINE)) {
+				postDeleteDeadline(req, res);
 			}
 		}
 
 	}
-	
-	
 
 	@Inject
 	IThongBaoService thongBaoService;
 	@Inject
+	ThongBaoService thongBaoService2;
+	@Inject
 	IDeadlineService deadlineService;
 
-	private void createThongBao(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		ThongBaoModel thongBaoModel = ConvertUtil.toModelOfAPI(ThongBaoModel.class, req);
-		if (thongBaoService.createThongBao(thongBaoModel) != null) {
+	private void postCreateThongBao(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		ThongBaoEntity thongBaoEntity = ConvertUtil.toModelOfAPI(ThongBaoEntity.class, req);
+		if (thongBaoService2.createThongBao(thongBaoEntity) > 0) {
 			DispatcherUtil.send(res, true);
 		}
+
 	}
-	private void saveEditThongBao(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		ThongBaoModel model = ConvertUtil.toModelOfAPI(ThongBaoModel.class, req);
+
+	private void postSaveEditThongBao(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
 		/*
-		 * Integer id=(Integer) SessionUtil.getInstance().getValue(req, "id");
-		 * model.setModifiedBy(id);
+		 * ThongBaoModel model = ConvertUtil.toModelOfAPI(ThongBaoModel.class, req);
+		 * Integer editThongBao = thongBaoService.update(model);
+		 * DispatcherUtil.send(res, editThongBao);
 		 */
-		Integer editThongBao=thongBaoService.update(model);
+		ThongBaoEntity thongBaoEntity = ConvertUtil.toModelOfAPI(ThongBaoEntity.class, req);
+		Integer editThongBao =thongBaoService2.update(thongBaoEntity);
 		DispatcherUtil.send(res, editThongBao);
 	}
-	private void deleteThongBao(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+
+	private void postDeleteThongBao(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
 		ThongBaoModel model = ConvertUtil.toModelOfAPI(ThongBaoModel.class, req);
-		Boolean delThongBao=thongBaoService.deleteThongBao(model.getId());
+		Boolean delThongBao = thongBaoService.deleteThongBao(model.getId());
 		DispatcherUtil.send(res, delThongBao);
 	}
-	private void createDeadline(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+	private void postCreateDeadline(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
 		DeadlineModel deadlineModel = ConvertUtil.toModelOfAPI(DeadlineModel.class, req);
 		if (deadlineService.createDeadline(deadlineModel) != null) {
 			DispatcherUtil.send(res, true);
 		}
+	}
+
+	private void postSaveEditDeadline(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		DeadlineModel model = ConvertUtil.toModelOfAPI(DeadlineModel.class, req);
+		Integer editDeadline = deadlineService.update(model);
+		DispatcherUtil.send(res, editDeadline);
+	}
+
+	private void postDeleteDeadline(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		DeadlineModel model = ConvertUtil.toModelOfAPI(DeadlineModel.class, req);
+		Boolean delDeadline = deadlineService.deleteDeadline(model.getId());
+		DispatcherUtil.send(res, delDeadline);
 	}
 
 }

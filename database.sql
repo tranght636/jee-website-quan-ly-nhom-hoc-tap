@@ -117,7 +117,7 @@ create table lesson( -- Buổi bọc
 
 create table classes ( -- jwat02, jwat03
 	id int primary key auto_increment,
-    name nvarchar(255),
+    name nvarchar(255) not null unique,
     course_id int,
     constraint fk_classes_courses foreign key (course_id ) references courses(id),
     is_done bit,
@@ -127,6 +127,10 @@ create table classes ( -- jwat02, jwat03
 	created_by int,
 	modified_by int
 );
+
+-- use dbjeejspservlet
+-- ALTER TABLE classes  DROP name;
+-- ALTER TABLE classes ADD name nvarchar(255) not null unique;
 
 create table user_in_class( -- lưu thông tin user thuộc lớp nào
 class_id int,
@@ -172,14 +176,18 @@ create table deadline(
     to_classes varchar(255), -- id lớp nhận thông báo, nối chuỗi cách nhau bởi _ , có thể có deadline cho tất cả
     due_date TIMESTAMP,-- ngày hết hạn thông báo, k có hạn thì null
 	is_register bit, -- deadline có 2 loại là đăng kí lịch và khác
-    year int,-- lưu năm 
-	week int, -- lưu tuần
+    week_in_year varchar(255),
+    -- year int,-- lưu năm 
+	-- week int, -- lưu tuần
     status int,
 	created_date TIMESTAMP,
 	modified_date TIMESTAMP,
 	created_by int,
 	modified_by int
 );
+-- use dbjeejspservlet
+-- ALTER TABLE deadline  DROP due_week;
+-- ALTER TABLE deadline ADD week_in_year  varchar(255);
 
 -- để biết user có đăng kí lịch hay chưa
 -- đầu tiên lấy all thông báo có due_date > ngày hiện tại và is_regis = true
@@ -192,10 +200,22 @@ user_id int,
 constraint fk_user_register_schedule_users foreign key (user_id) references users(id),
 deadline_id int,
 constraint fk_user_register_schedule_deadline foreign key (deadline_id) references deadline(id),
-is_register bit,
-year int,-- lưu năm 
-week int, -- lưu tuần
+week_in_year varchar(255),
 schedule varchar(255), -- C2-S2-C3-S3
+status int,
+created_date TIMESTAMP,
+modified_date TIMESTAMP,
+created_by int,
+modified_by int
+);
+
+create table user_do_homework(-- lưu nop deadline
+id int primary key auto_increment,
+user_id int,
+constraint fk_user_do_homework_users foreign key (user_id) references users(id),
+deadline_id int,
+constraint fk_user_do_homework_deadline foreign key (deadline_id) references deadline(id),
+is_register bit,
 url_homework varchar(255), -- dùng để lưu url chứa code bài tập deadline, loại khác
 status int,
 created_date TIMESTAMP,
@@ -294,3 +314,6 @@ modified_by int
 -- thêm giao diện chuyển lớp
 -- rooms add cứng dưới database
 -- giao diện thêm thời khóa biểu bổ sung trường lớp, cbo chọn bài học(số lượng),
+
+
+-- sửa db: 1, bảng classes thêm unique trường name, bảng deadline sửa column due-week
