@@ -9,11 +9,13 @@
 					class="list-group-item d-flex justify-content-between align-items-center">
 					<div style="margin-right: 25px;">
 						<a class="a-notification-admin"
+
 							href="/thong-bao-deadline?action=view_thong_bao&id=${thongBao.id}">
 							${thongBao.title} </a> <span style="color: #2b2b2b; font-size: 13px;">
 							${thongBao.createdDate} </span> <span
 							style="color: #f00; font-size: 16px"> *new</span>
 					</div>
+
 				</li>
 			</c:forEach>
 		</ul>

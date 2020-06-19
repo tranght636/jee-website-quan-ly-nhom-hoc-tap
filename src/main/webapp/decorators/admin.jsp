@@ -13,32 +13,30 @@
 <title>Admin</title>
 <!-- Custom fonts for this template-->
 
-<link rel="stylesheet"
-	href="<c:url value='/template/admin/vendor/fontawesome-free/css/all.min.css' />" />
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='/template/admin/vendor/fontawesome-free/css/all.min.css' />" />
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <!-- Custom styles for this template-->
-<link rel="stylesheet"
-	href="<c:url value='/template/admin/css/sb-admin-2.min.css' />" />
-<link rel="stylesheet"
-	href='<c:url value="/template/vendor/font-awesome/css/font-awesome.min.css"/>' />
-<link rel="stylesheet"
-	href='<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>' />
+<link rel="stylesheet" href="<c:url value='/template/admin/css/sb-admin-2.min.css' />" />
+<link rel="stylesheet" href='<c:url value="/template/vendor/font-awesome/css/font-awesome.min.css"/>' />
 
-<link rel="stylesheet"
-	href="<c:url value='/template/admin/css/styles.css' />" />
+<link rel="stylesheet" href='<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>' />
+
+<link rel="stylesheet" href="<c:url value='/template/admin/css/styles.css' />" />
 <!-- ckeditor -->
 <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
 
 
-<script
-	src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
+<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
 <!-- MDBootstrap Datatables  -->
 <link href="<c:url value='/template/vendor/table/datatables.min.css' />" rel="stylesheet">
 <!-- MDBootstrap Datatables  -->
 <script type="text/javascript" src="<c:url value='/template/vendor/table/datatables.min.js' />"></script>
+<link rel="stylesheet" href="<c:url value='/template/loader/jquery.loadingModal.css' />" />
 
+<link rel="stylesheet" href="<c:url value='/template/admin/css/styles.css' />" />
+<!-- ckeditor -->
+<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
+  
 <style type="text/css">
 table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 	table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc:before,
@@ -49,6 +47,11 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
 	bottom: .5em;
 	}
 </style>
+
+
+<%-- <script src="<c:url value='/template/loader/jquery-3.1.1.slim.min.js' />"></script>
+<script src="<c:url value='/template/loader/jquery.loadingModal.js' />"></script> --%>
+
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->

@@ -13,6 +13,8 @@ public class ChapterEntity extends CommonEntity{
 	private String index;
 	@Column("stage_name")
 	private String stageName;
+	@Column("content")
+	private String content;
 	
 	public String getStageId() {
 		return stageId;
@@ -37,5 +39,11 @@ public class ChapterEntity extends CommonEntity{
 	}
 	public void setStageName(String stageName) {
 		this.stageName = stageName;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 }

@@ -10,10 +10,12 @@
 					class="list-group-item d-flex justify-content-between align-items-center">
 					<div>
 						<a class="a-notification-admin"
+
 							href='<c:url value="/thong-bao-deadline?action=view_deadline&id=${deadline.id}"/>'>
 							${deadline.title}</a> <span style="color: #2b2b2b; font-size: 13px;">${deadline.createdDate}</span>
 						<span style="color: #f00; font-size: 16px">*new</span>
 					</div> 
+
 				</li>
 			</c:forEach>
 		</ul>

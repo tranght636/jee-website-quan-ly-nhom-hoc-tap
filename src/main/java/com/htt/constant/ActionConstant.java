@@ -58,6 +58,11 @@ public interface  ActionConstant {
 		public static final String CREATE_GIAI_DOAN = "create_giai_doan";
 		public static final String UPDATE = "update";
 		public static final Object GET_STAGE_BY_COURSE = "get_stage_by_course";
+		public static final Object CREATE_BAI_HOC = "create_bai_hoc";
+		public static final Object CREATE_BUOI_HOC = "create_buoi_hoc";
+		public static final Object UPDATE_GIAI_DOAN = "update_giai_doan";
+		public static final Object UPDATE_BAI_HOC = "update_bai_hoc";
+		public static final Object UPDATE_BUOI_HOC = "update_buoi_hoc";
 	}
 }
 

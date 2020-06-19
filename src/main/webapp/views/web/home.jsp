@@ -13,7 +13,9 @@
 	<section id="tabs">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-xs-12 " style="width: 100%; margin-top: 10px;">
+
 					<nav>
 						<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 						<c:choose>
@@ -38,6 +40,7 @@
 					</nav>
 					<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent"
 						style="width: 100%; ">
+
 						<c:choose>
 						<c:when test="${tab==2}">
 							<div class="tab-pane fade " id="nav-home"

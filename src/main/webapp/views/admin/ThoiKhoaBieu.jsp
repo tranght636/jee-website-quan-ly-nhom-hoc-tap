@@ -2,11 +2,8 @@
 	pageEncoding="UTF-8"%>
 <div class="container-fluid">
 	<!-- start list users -->
-	
 	<div style="margin-top: 68px">
-		<h2 class="h2-admin">
-			THỜI KHÓA BIỂU 
-		</h2>
+		<h2 class="h2-admin">THỜI KHÓA BIỂU</h2>
 	</div>
 	<div class="div-select-filter">
 		<select name="loaiThongBao" class="select-filter">
@@ -28,7 +25,7 @@
 				<div class="input-group-append ">
 					<span class="btn input-group-text red lighten-3 forward span-ward"></span>
 				</div>
-				
+
 			</div>
 
 		</form>
@@ -51,34 +48,33 @@
 			<tr>
 				<th scope="col">Sáng</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s2"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s3"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
-				</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s4"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
-				</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s5"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
-				</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s6"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
-				</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s7"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
-
-				</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s8"
-					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
-					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
-
-				</th>
+					data-target="#exampleModalCenter"><span style="color: red;">
+						Chapter 1+2</span> <br /> (15 ng) <br />7F small <br /> Anh Thuận <br />
+					9h30 - 11h30</th>
 			</tr>
 			<tr>
 				<th colspan="8"></th>
@@ -122,55 +118,54 @@
 			style="width: 50%">Các bạn chú ý đi đúng giờ.
 				</textarea>
 		<button type="button"
-					style="margin-top: 5px; background-color: #0085A0;">Lưu
-			Ghi chú</button>
+			style="margin-top: 5px; background-color: #0085A0;">Lưu Ghi
+			chú</button>
 	</div>
 </div>
 
 <!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-		
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				
-				<form action="/jwat/themlich" method="post">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<form action="/jwat/themlich" method="post">
 				<div class="modal-body">
 
 
 					<div class="card">
 
 						<div class="card-body">
-							
-								<label class="mr-sm-2">Nội dung: </label> 
-								<input name="noiDung" type="text" class="form-control mb-2 mr-sm-2"> 
-								<label class="mr-sm-2">Số lượng: </label> 
-								<input name="soLuong" type="number" class="form-control mb-2 mr-sm-2" >
-								<label class="mr-sm-2">Phòng: </label> 
-								<input name="phong" type="text" class="form-control mb-2 mr-sm-2" >
-								<label class="mr-sm-2">Trainer: </label> 
-								<input name="trainer" type="text" class="form-control mb-2 mr-sm-2" >
-								<label class="mr-sm-2">Ghi chú: </label> 
-								<input name="ghiChu" type="text" class="form-control mb-2 mr-sm-2" >
+
+							<label class="mr-sm-2">Nội dung: </label> <input name="noiDung"
+								type="text" class="form-control mb-2 mr-sm-2"> <label
+								class="mr-sm-2">Số lượng: </label> <input name="soLuong"
+								type="number" class="form-control mb-2 mr-sm-2"> <label
+								class="mr-sm-2">Phòng: </label> <input name="phong" type="text"
+								class="form-control mb-2 mr-sm-2"> <label
+								class="mr-sm-2">Trainer: </label> <input name="trainer"
+								type="text" class="form-control mb-2 mr-sm-2"> <label
+								class="mr-sm-2">Ghi chú: </label> <input name="ghiChu"
+								type="text" class="form-control mb-2 mr-sm-2">
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary">Lưu</button>
 				</div>
-				</form>
-			</div>
-			
+			</form>
 		</div>
+
 	</div>
-
-
+</div>
 

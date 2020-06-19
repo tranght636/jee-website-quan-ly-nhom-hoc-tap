@@ -19,4 +19,17 @@ public class StageService {
 	public List<StageEntity> getStageByCourseId(Integer id) {
 		return stageDao.getStageByCourseId(id);
 	}
+
+	public Object selectOne(int id) {
+		return stageDao.selectOne(id);
+	}
+
+	public Integer updateOne(StageEntity stageEntity) {
+		return stageDao.updateOne(stageEntity);
+	}
+
+	public Object deleteOne(StageEntity stageEntity) {
+		stageEntity.setStatus(-1);
+		return stageDao.updateOne(stageEntity);
+	}
 }
