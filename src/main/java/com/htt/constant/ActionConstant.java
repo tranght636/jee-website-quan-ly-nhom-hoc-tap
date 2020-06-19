@@ -45,6 +45,8 @@ public interface  ActionConstant {
 	public static final Object VIEW_DEADLINE = "view_deadline";
 	public static final Object SAVE_EDIT_DEADLINE = "save_edit_deadline";
 	public static final Object DELETE_DEADLINE = "delete_deadline";
+	public static final Object SAVE_THONG_TIN_DANG_KY_LICH = "save_thong_tin_dang_ky_lich";
+	public static final Object SAVE_THONG_TIN_DEADLINE = "save_thong_tin_deadline";
 	
 	public static interface KHOA_HOC {
 		public static final String CHI_TIET_KHOA_HOC = "chi_tiet_khoa_hoc";

@@ -7,9 +7,9 @@ import com.htt.anotatiton.Table;
 public class ThongTinDangKyLichEntity extends CommonEntity{
 	
 	@Column("user_id")
-	private String userId;
+	private Integer userId;
 	@Column("deadline_id")
-	private String deadlineId;
+	private Integer deadlineId;
 	@Column("week_in_year")
 	private String weekInYear;
 	@Column("schedule")
@@ -19,16 +19,16 @@ public class ThongTinDangKyLichEntity extends CommonEntity{
 	@Column("class_name")
 	private String className;
 	
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public String getDeadlineId() {
+	public Integer getDeadlineId() {
 		return deadlineId;
 	}
-	public void setDeadlineId(String deadlineId) {
+	public void setDeadlineId(Integer deadlineId) {
 		this.deadlineId = deadlineId;
 	}
 	public String getWeekInYear() {

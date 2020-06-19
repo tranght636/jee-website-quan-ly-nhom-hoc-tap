@@ -1,6 +1,28 @@
 var today = new Date();
 document.getElementById("due_dateDeadline").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + (today.getDate())).slice(-2);
+//lấy ngày đầu tuần
+function getDateOfISOWeek(w, y) {
+    var simple = new Date(y, 0, 1 + (w - 1) * 7);
+    var dow = simple.getDay();
+    var ISOweekStart = simple;
+    if (dow <= 4)
+        ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+    else
+        ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+    return ISOweekStart;
+}
 function setTitleAndContent() {
+	var temp = document.getElementById("due_weekDeadline").value.split('-W');
+	var year = temp[0];
+	var week = temp[1];
+	var startDate = getDateOfISOWeek(week,year);
+	var endDay = new Date(startDate);
+	endDay.setDate(startDate.getDate() + 6);
+	
+	
+	
+	
+	
 	// set value title
 	document.getElementById("title").value = "Đăng ký lịch học "+ document.getElementById("due_weekDeadline").value;
 	// set value editor
@@ -9,7 +31,8 @@ function setTitleAndContent() {
 		contentEditor+=" học lớp "+ document.getElementById("AddDeadlineClasses").value;
 	}
 	contentEditor+=" đăng ký lịch học cho tuần " + document.getElementById("due_weekDeadline").value;
-	contentEditor+= "<br/>Link đăng ký: <a href='/web/dangkylichhoc?action=dang-ky-lich-hoc&id="+ document.getElementById("due_weekDeadline").value +"'> Đăng ký lịch học tuần "+ document.getElementById("due_weekDeadline").value + "</a>";
+	contentEditor+="("+ startDate.getDate()+"/"+startDate.getMonth()+"/"+startDate.getFullYear() +" - " + endDay.getDate() +"/"+endDay.getMonth()+"/"+endDay.getFullYear()+")";
+	//contentEditor+= "<br/>Link đăng ký: <a href='/web/dangkylichhoc?action=dang-ky-lich-hoc&id="+ document.getElementById("due_weekDeadline").value +"'> Đăng ký lịch học tuần "+ document.getElementById("due_weekDeadline").value + "</a>";
 	editor.setData(contentEditor);
 	
 }

@@ -31,5 +31,10 @@ public class ThongTinDangKyLichDAO extends CommonDao<ThongTinDangKyLichEntity>{
 				+ " and week_in_year = ?";
 		return selecList(sql, status, weekInYear);
 	}
+
+	public Object findByIdUser(Integer status, Integer userId) {
+		String sql = "select *from user_register_schedule where status =? and user_id=?";
+		return selecList(sql, status, userId);
+	}
 	
 }

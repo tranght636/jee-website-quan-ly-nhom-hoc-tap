@@ -8,7 +8,8 @@ function setTitleAndContent() {
 		contentEditor+=" học lớp "+ document.getElementById("EditDeadlineClasses").value;
 	}
 	contentEditor+=" đăng ký lịch học cho tuần " + document.getElementById("due_weekEditDeadline").value;
-	contentEditor+= "<br/>Link đăng ký: <a href='/web/dangkylichhoc?action=dang-ky-lich-hoc&id="+ document.getElementById("due_weekEditDeadline").value +"'> Đăng ký lịch học tuần "+ document.getElementById("due_weekEditDeadline").value + "</a>";
+	contentEditor+="("+ startDate.getDate()+"/"+startDate.getMonth()+"/"+startDate.getFullYear() +" - " + endDay.getDate() +"/"+endDay.getMonth()+"/"+endDay.getFullYear()+")";
+	//contentEditor+= "<br/>Link đăng ký: <a href='/web/dangkylichhoc?action=dang-ky-lich-hoc&id="+ document.getElementById("due_weekEditDeadline").value +"'> Đăng ký lịch học tuần "+ document.getElementById("due_weekEditDeadline").value + "</a>";
 	editor.setData(contentEditor);
 	
 }

@@ -1,138 +1,176 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
-    <html>
+	pageEncoding="UTF-8"%>
+<div class="container-fluid">
+	<!-- start list users -->
+	
+	<div style="margin-top: 68px">
+		<h2 class="h2-admin">
+			THỜI KHÓA BIỂU 
+		</h2>
+	</div>
+	<div class="div-select-filter">
+		<select name="loaiThongBao" class="select-filter">
+			<option value="thongbaonghi">Jwat 01</option>
+			<option value="thongbaonghi">Jwat 02</option>
+			<option value="thongbaonghi">Jwat 03</option>
+			<option value="thongbaonghi">Jwat 04</option>
+		</select>
+	</div>
+	<div>
+		<form action="/jwat/xemlich" method="post">
+			<div class="input-group md-form form-sm form-2 pl-0 "
+				style="margin-bottom: 5px;">
+				<div class="input-group-prepend">
+					<span class="btn input-group-text red lighten-3 backward span-ward"></span>
+				</div>
+				<input id="idinputWeek" type="week" name="weekSoanLich"
+					style="width: 200px; height: 30px; border: 1px solid #999;" />
+				<div class="input-group-append ">
+					<span class="btn input-group-text red lighten-3 forward span-ward"></span>
+				</div>
+				
+			</div>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Insert title here</title>
-        <style type="text/css">
-        table.dataTable thead .sorting:after,
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_asc_disabled:before,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_desc:before,
-table.dataTable thead .sorting_desc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:before {
-bottom: .5em;
-}
-        </style>
-    </head>
+		</form>
+	</div>
+	<table class="table table-striped table-bordered"
+		style="text-align: center;">
+		<thead>
+			<tr>
+				<th scope="col">Tuần</th>
+				<th scope="col">Thứ 2</th>
+				<th scope="col">Thứ 3</th>
+				<th scope="col">Thứ 4</th>
+				<th scope="col">Thứ 5</th>
+				<th scope="col">Thứ 6</th>
+				<th scope="col">Thứ 7</th>
+				<th scope="col">chủ nhật</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="col">Sáng</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s2"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s3"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s4"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s5"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s6"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s7"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
 
-    <body>
-    <script type="text/javascript">
-    $(document).ready(function () {
-    	$('#dtDynamicVerticalScrollExample').DataTable({
-    	"scrollY": "50vh",
-    	"scrollCollapse": true,
-    	});
-    	$('.dataTables_length').addClass('bs-select');
-    	});
-    </script>
-        <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0"
-  width="100%">
-  <thead>
-    <tr>
-      <th class="th-sm">Name
-      </th>
-      <th class="th-sm">Position
-      </th>
-      <th class="th-sm">Office
-      </th>
-      <th class="th-sm">Age
-      </th>
-      <th class="th-sm">Start date
-      </th>
-      <th class="th-sm">Salary
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Tiger Nixon</td>
-      <td>System Architect</td>
-      <td>Edinburgh</td>
-      <td>61</td>
-      <td>2011/04/25</td>
-      <td>$320,800</td>
-    </tr>
-    <tr>
-      <td>Garrett Winters</td>
-      <td>Accountant</td>
-      <td>Tokyo</td>
-      <td>63</td>
-      <td>2011/07/25</td>
-      <td>$170,750</td>
-    </tr>
-    <tr>
-      <td>Ashton Cox</td>
-      <td>Junior Technical Author</td>
-      <td>San Francisco</td>
-      <td>66</td>
-      <td>2009/01/12</td>
-      <td>$86,000</td>
-    </tr>
-    <tr>
-      <td>Cedric Kelly</td>
-      <td>Senior Javascript Developer</td>
-      <td>Edinburgh</td>
-      <td>22</td>
-      <td>2012/03/29</td>
-      <td>$433,060</td>
-    </tr>
-    <tr>
-      <td>Airi Satou</td>
-      <td>Accountant</td>
-      <td>Tokyo</td>
-      <td>33</td>
-      <td>2008/11/28</td>
-      <td>$162,700</td>
-    </tr>
-    <tr>
-      <td>Brielle Williamson</td>
-      <td>Integration Specialist</td>
-      <td>New York</td>
-      <td>61</td>
-      <td>2012/12/02</td>
-      <td>$372,000</td>
-    </tr>
-    <tr>
-      <td>Herrod Chandler</td>
-      <td>Sales Assistant</td>
-      <td>San Francisco</td>
-      <td>59</td>
-      <td>2012/08/06</td>
-      <td>$137,500</td>
-    </tr>
-    <tr>
-      <td>Rhona Davidson</td>
-      <td>Integration Specialist</td>
-      <td>Tokyo</td>
-      <td>55</td>
-      <td>2010/10/14</td>
-      <td>$327,900</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th>Name
-      </th>
-      <th>Position
-      </th>
-      <th>Office
-      </th>
-      <th>Age
-      </th>
-      <th>Start date
-      </th>
-      <th>Salary
-      </th>
-    </tr>
-  </tfoot>
-</table>
-    </body>
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="s8"
+					data-target="#exampleModalCenter"><span style="color: red;"> Chapter 1+2</span>
+					<br /> (15 ng) <br />7F small <br /> Anh Thuận <br /> 9h30 - 11h30
 
-    </html>
+				</th>
+			</tr>
+			<tr>
+				<th colspan="8"></th>
+			</tr>
+			<tr>
+				<th scope="col">Chiều</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c2"
+					data-target="#exampleModalCenter">${schedule.get("c2").getNoiDung() }
+					<br /> ${schedule.get("c2").getSoLuong() } <br />${schedule.get("c2").getPhong()}
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c3"
+					data-target="#exampleModalCenter">${schedule.get("c3").getNoiDung() }
+					<br /> ${schedule.get("c3").getSoLuong() } <br />${schedule.get("c3").getPhong()}
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c4"
+					data-target="#exampleModalCenter">${schedule.get("c4").getNoiDung() }
+					<br /> ${schedule.get("c4").getSoLuong() } <br />${schedule.get("c4").getPhong()}
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c5"
+					data-target="#exampleModalCenter">${schedule.get("c5").getNoiDung() }
+					<br /> ${schedule.get("c5").getSoLuong() } <br />${schedule.get("c5").getPhong()}
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c6"
+					data-target="#exampleModalCenter">${schedule.get("c6").getNoiDung() }
+					<br /> ${schedule.get("c6").getSoLuong() } <br />${schedule.get("c6").getPhong()}
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c7"
+					data-target="#exampleModalCenter">${schedule.get("c7").getNoiDung() }
+					<br /> ${schedule.get("c7").getSoLuong() } <br />${schedule.get("c7").getPhong()}
+				</th>
+				<th scope="col" data-toggle="modal" class="thSoanLich" buoi="c8"
+					data-target="#exampleModalCenter">${schedule.get("c8").getNoiDung() }
+					<br /> ${schedule.get("c8").getSoLuong() } <br />${schedule.get("c8").getPhong()}
+				</th>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<h4 style="color: red;">Ghi chú:</h4>
+		<textarea name="noiDung" class="form-control" rows="5"
+			style="width: 50%">Các bạn chú ý đi đúng giờ.
+				</textarea>
+		<button type="button"
+					style="margin-top: 5px; background-color: #0085A0;">Lưu
+			Ghi chú</button>
+	</div>
+</div>
+
+<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				<form action="/jwat/themlich" method="post">
+				<div class="modal-body">
+
+
+					<div class="card">
+
+						<div class="card-body">
+							
+								<label class="mr-sm-2">Nội dung: </label> 
+								<input name="noiDung" type="text" class="form-control mb-2 mr-sm-2"> 
+								<label class="mr-sm-2">Số lượng: </label> 
+								<input name="soLuong" type="number" class="form-control mb-2 mr-sm-2" >
+								<label class="mr-sm-2">Phòng: </label> 
+								<input name="phong" type="text" class="form-control mb-2 mr-sm-2" >
+								<label class="mr-sm-2">Trainer: </label> 
+								<input name="trainer" type="text" class="form-control mb-2 mr-sm-2" >
+								<label class="mr-sm-2">Ghi chú: </label> 
+								<input name="ghiChu" type="text" class="form-control mb-2 mr-sm-2" >
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Lưu</button>
+				</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+
+
+

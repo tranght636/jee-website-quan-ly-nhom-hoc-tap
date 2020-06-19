@@ -1,7 +1,6 @@
 package com.htt.controller.admin;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
-import com.htt.entity.ThongTinDangKyLichEntity;
 import com.htt.service2.ClassesService;
 import com.htt.service2.ThongTinDangKyLichService;
 import com.htt.utils.DispatcherUtil;
@@ -70,20 +68,6 @@ public class LichController extends HttpServlet{
 			if (dsDangKyLich != null) {
 				req.setAttribute("dsDangKyLich", dsDangKyLich);
 			}
-			
-			/*
-			 * 
-			 ThongTinDangKyLichEntity ThongTinDangKyLichEntity = ConvertUtil.toModelOfAPI(ThongTinDangKyLichEntity.class, req);
-	//		if (thongTinDangKyLichService.findByWeekInYear(ThongTinDangKyLichEntity.getWeekInYear()).size() > 0) {
-	//			DispatcherUtil.send(res, true);
-	//		}
-			List<ThongTinDangKyLichEntity> dsDangKyLich = thongTinDangKyLichService.findByWeekInYear(ThongTinDangKyLichEntity.getWeekInYear());
-			req.setAttribute("dsDangKyLich", dsDangKyLich);
-			DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
-			 */
-			
-			
-			
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
 	}
 	private void getThoiKhoaBieu(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{

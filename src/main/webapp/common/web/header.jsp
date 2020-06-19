@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="    background-color: #4e73df;">
+<div style="margin-bottom: 20px;">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="    background-color: #4e73df; ">
       <div class="container">
-        <a class="navbar-brand" href="<c:url value="/trang-chu"/>">Jwat</a>
+        <a class="navbar-brand" href="<c:url value="/trang-chu"/>">Quản Lý Khóa Học Tập</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,3 +47,4 @@
         </div>
       </div>
 </nav>
+</div>
