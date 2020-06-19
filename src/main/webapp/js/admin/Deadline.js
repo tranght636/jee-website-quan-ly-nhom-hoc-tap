@@ -12,7 +12,7 @@ $(document).ready(function() {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function(result) {
-                if (result === true) {
+                if (result >0) {
                     This.closest("li").remove();
                 } else {
                     alert("bug");

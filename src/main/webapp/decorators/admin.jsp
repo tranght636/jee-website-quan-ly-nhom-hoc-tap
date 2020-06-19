@@ -23,6 +23,8 @@
 	href="<c:url value='/template/admin/css/sb-admin-2.min.css' />" />
 <link rel="stylesheet"
 	href='<c:url value="/template/vendor/font-awesome/css/font-awesome.min.css"/>' />
+<link rel="stylesheet" href='<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>' />
+            
 <link rel="stylesheet"
 	href="<c:url value='/template/admin/css/styles.css' />" />
 <!-- ckeditor -->

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.htt.dao.IDeadlineDAO;
 import com.htt.mapper.DeadlineMapper;
-import com.htt.mapper.ThongBaoMapper;
 import com.htt.model.DeadlineModel;
 
 public class DeadlineDAO extends AbstractDAO<DeadlineModel> implements IDeadlineDAO {
@@ -40,15 +39,7 @@ public class DeadlineDAO extends AbstractDAO<DeadlineModel> implements IDeadline
 
 	@Override
 	public Integer update(DeadlineModel model) {
-		/*
-		 * UPDATE `dbjeejspservlet`.`deadline` SET `title` = 'a', `content` = 'a', `to_classes` = 'a', `due_date` = '2020-06-01 00:00:00', `week_in_year` = '2020-W26' WHERE (`id` = '38');
-*/
-//		String sql = "UPDATE deadline SET `title` = ?, `content` = ?, `to_classes` = ?, `due_date` = '2020-06-02 00:00:00', `modified_date` = '2020-06-1 14:53:31', `modified_by` = '6', `week_in_year` = '2020-W25' "
-//				+ "WHERE (`id` = ?);";
 		String sql="UPDATE deadline SET title = ?, content =?,to_classes=?,due_date=?,week_in_year=?  WHERE (id = ?);";
-		//UPDATE `dbjeejspservlet`.`deadline` SET `title` = 'a', `content` = 'a', `to_classes` = 'a', `due_date` = '2020-06-01 00:00:00', `week_in_year` = '2020-W26' WHERE (`id` = '38');
-		
-		
 		return insert(sql,model.getTitle(),model.getContent(),model.getToClass(),model.getDueDate(),model.getWeekInYear(),model.getId());
 	}
 

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import com.htt.anotatiton.Column;
 import com.htt.anotatiton.Table;
 @Table("deadline")
-public class DeadlineEntity {
+public class DeadlineEntity extends CommonEntity {
 	@Column("title")
 	private String title;
 	@Column("content")
@@ -16,10 +16,9 @@ public class DeadlineEntity {
 	private Timestamp dueDate;
 	@Column("is_register")
 	private Boolean isRegister;
-	@Column("due_week")
-	private String dueWeek;
+	@Column("week_in_year")
+	private String weekInYear;
 	
-	private int status;
 	public String getTitle() {
 		return title;
 	}
@@ -51,17 +50,12 @@ public class DeadlineEntity {
 	public void setIsRegister(Boolean isRegister) {
 		this.isRegister = isRegister;
 	}
-	public String getDueWeek() {
-		return dueWeek;
+	
+	public String getWeekInYear() {
+		return weekInYear;
 	}
-	public void setDueWeek(String dueWeek) {
-		this.dueWeek = dueWeek;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setWeekInYear(String weekInYear) {
+		this.weekInYear = weekInYear;
 	}
 	
 }

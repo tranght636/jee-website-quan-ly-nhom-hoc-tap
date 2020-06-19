@@ -3,6 +3,7 @@ package com.htt.controller.admin;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
+import com.htt.service2.ClassesService;
+import com.htt.service2.ThongTinDangKyLichService;
 import com.htt.utils.DispatcherUtil;
 
 @WebServlet(urlPatterns = { "/admin/thong-tin-dang-ky-lich","/admin/soan-thoi-khoa-bieu","/admin/thong-tin-xin-nghi"})
 public class LichController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	ThongTinDangKyLichService thongTinDangKyLich;
+	@Inject
+	ClassesService classesService;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String action = req.getParameter("action");
@@ -47,14 +56,25 @@ public class LichController extends HttpServlet{
 
 	private void getThongTinDangKyLich(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		setMessage(req);
-		
-		//List<UserEntity> dsThanhVien = userService2.selectAll(1);
-		//req.setAttribute("dsThanhVien", dsThanhVien);
-		
-		
-		
+		String clazz = req.getParameter("class");
+		if(clazz != null) {
+			Object dsDangKyLich = thongTinDangKyLich.findByClass(clazz);
+			if (dsDangKyLich != null) {
+				req.setAttribute("dsDangKyLich", dsDangKyLich);
+				req.setAttribute("clazz", clazz);
+			}
+		} else {
+			Object dsDangKyLich = thongTinDangKyLich.findAll();
+			if (dsDangKyLich != null) {
+				req.setAttribute("dsDangKyLich", dsDangKyLich);
+				req.setAttribute("clazz", "TatCa");
+			}
+		}
+//		Object dsClasses = classesService.findAll();
+//		if (dsClasses != null) {
+//			req.setAttribute("dsClasses", dsClasses);
+//		}
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
-		
 	}
 	private void getThoiKhoaBieu(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThoiKhoaBieu");

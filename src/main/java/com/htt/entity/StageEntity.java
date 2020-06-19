@@ -1,23 +1,25 @@
 package com.htt.entity;
 
-import java.sql.Timestamp;
-
 import com.htt.anotatiton.Column;
 import com.htt.anotatiton.Table;
 
-@Table("courses")
-public class CourseEntity extends CommonEntity {
+@Table("stage")
+public class StageEntity extends CommonEntity {
+	@Column("courses_id")
+	private Integer coursesId;	
 	@Column("name")
 	private String name;
 	@Column("description")
 	private String description;
 	@Column("note")
 	private String note;
-	@Column("start_time")
-	private Timestamp startTime;
-	@Column("end_time")
-	private Timestamp endTime;
 	
+	public Integer getCoursesId() {
+		return coursesId;
+	}
+	public void setCoursesId(Integer coursesId) {
+		this.coursesId = coursesId;
+	}
 	public String getName() {
 		return name;
 	}
@@ -35,17 +37,5 @@ public class CourseEntity extends CommonEntity {
 	}
 	public void setNote(String note) {
 		this.note = note;
-	}
-	public Timestamp getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(Timestamp startTime) {
-		this.startTime = startTime;
-	}
-	public Timestamp getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(Timestamp endTime) {
-		this.endTime = endTime;
 	}
 }

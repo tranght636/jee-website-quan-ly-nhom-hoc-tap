@@ -4,7 +4,7 @@ import com.htt.anotatiton.Column;
 import com.htt.anotatiton.Table;
 
 @Table("classes")
-public class ClassesEntity {
+public class ClassesEntity extends CommonEntity {
 	@Column("name")
 	private String name;
 	@Column("course_id")
