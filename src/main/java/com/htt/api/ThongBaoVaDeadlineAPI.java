@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.htt.constant.ActionConstant;
 import com.htt.entity.DeadlineEntity;
 import com.htt.entity.ThongBaoEntity;
-import com.htt.model.DeadlineModel;
-import com.htt.model.ThongBaoModel;
 import com.htt.service.IDeadlineService;
 import com.htt.service.IThongBaoService;
 import com.htt.service2.DeadlineService;

@@ -10,51 +10,97 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
+import com.htt.entity.ChapterEntity;
+import com.htt.entity.LessonEntity;
 import com.htt.entity.StageEntity;
+import com.htt.service2.ChapterService;
+import com.htt.service2.LessonService;
 import com.htt.service2.StageService;
 import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
-import com.htt.utils.StringUtil;
 
-@WebServlet(urlPatterns = {"/admin/chi-tiet-khoa-hoc"})
+@WebServlet(urlPatterns = { "/admin/chi-tiet-khoa-hoc" })
 public class ChiTietKhoaHocController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	StageService stageService;
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String action = req.getParameter("action");
-		if(action != null) {
-			if(action.equals(ActionConstant.CHI_TIET_KHOA_HOC.GET_STAGE_BY_COURSE)) {
-				getStageByCourse(req, res);
-			}
-		}
-	}
-	
+	@Inject
+	ChapterService chapterService;
+	@Inject
+	LessonService lessonService;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String action = req.getParameter("action");
-		if(action != null) {
-			if(action.equals(ActionConstant.CHI_TIET_KHOA_HOC.CREATE_GIAI_DOAN)) {
+		if (action != null) {
+			if (action.equals(ActionConstant.CHI_TIET_KHOA_HOC.CREATE_GIAI_DOAN)) {
 				createGiaiDoan(req, res);
-			}
+			} else if (action.equals(ActionConstant.CHI_TIET_KHOA_HOC.CREATE_BAI_HOC)) {
+				createBaiHoc(req, res);
+			} else if (action.equals(ActionConstant.CHI_TIET_KHOA_HOC.CREATE_BUOI_HOC)) {
+				createBuoiHoc(req, res);
+			} else if (action.equals(ActionConstant.CHI_TIET_KHOA_HOC.UPDATE_GIAI_DOAN)) {
+				updateGiaiDoan(req, res);
+			} else if (action.equals(ActionConstant.CHI_TIET_KHOA_HOC.UPDATE_BAI_HOC)) {
+				updateBaiHoc(req, res);
+			} else if (action.equals(ActionConstant.CHI_TIET_KHOA_HOC.UPDATE_BUOI_HOC)) {
+				updateBuoiHoc(req, res);
+			} 
 		}
 	}
-	
-	private void getStageByCourse(HttpServletRequest req, HttpServletResponse res) throws NumberFormatException, ServletException, IOException {
+
+	private void updateBuoiHoc(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String courseId = req.getParameter("courseId");
-		if(!StringUtil.isNullOrEmpty(courseId)) {
-			DispatcherUtil.send(res, stageService.getStageByCourseId(Integer.parseInt(courseId)));
+		LessonEntity lessonEntity = ConvertUtil.toModelOfController(LessonEntity.class, req);
+		Integer result = lessonService.updateOne(lessonEntity);
+		if (result > 0) {
+			DispatcherUtil.redirect(req, res, "/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id=" + courseId);
+		}
+	}
+
+	private void updateBaiHoc(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String courseId = req.getParameter("courseId");
+		ChapterEntity chapterEntity = ConvertUtil.toModelOfController(ChapterEntity.class, req);
+		Integer result = chapterService.updateOne(chapterEntity);
+		if (result > 0) {
+			DispatcherUtil.redirect(req, res, "/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id=" + courseId);
+		}
+	}
+
+	private void updateGiaiDoan(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		StageEntity stageEntity = ConvertUtil.toModelOfController(StageEntity.class, req);
+		Integer result = stageService.updateOne(stageEntity);
+		if (result > 0) {
+			DispatcherUtil.redirect(req, res,
+					"/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id=" + stageEntity.getCoursesId());
+		}
+	}
+
+	private void createBuoiHoc(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String courseId = req.getParameter("courseId");
+		LessonEntity lessonEntity = ConvertUtil.toModelOfController(LessonEntity.class, req);
+		Integer result = lessonService.insertOne(lessonEntity);
+		if (result > 0) {
+			DispatcherUtil.redirect(req, res, "/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id=" + courseId);
+		}
+	}
+
+	private void createBaiHoc(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String courseId = req.getParameter("courseId");
+		ChapterEntity chapterEntity = ConvertUtil.toModelOfController(ChapterEntity.class, req);
+		Integer result = chapterService.insertOne(chapterEntity);
+		if (result > 0) {
+			DispatcherUtil.redirect(req, res, "/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id=" + courseId);
 		}
 	}
 
 	private void createGiaiDoan(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		StageEntity stageEntity = ConvertUtil.toModelOfController(StageEntity.class, req);
 		Integer result = stageService.insertOne(stageEntity);
-		if(result > 0) {
-			DispatcherUtil.redirect(req, res, "/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id="+stageEntity.getCoursesId());
+		if (result > 0) {
+			DispatcherUtil.redirect(req, res,
+					"/admin/khoa-hoc?action=chi_tiet_khoa_hoc&id=" + stageEntity.getCoursesId());
 		}
 	}
 }
