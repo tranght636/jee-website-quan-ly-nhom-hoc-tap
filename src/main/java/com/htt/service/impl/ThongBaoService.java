@@ -45,5 +45,12 @@ public class ThongBaoService implements IThongBaoService{
 	public Boolean deleteThongBao(Integer id) {
 		return thongBaoDAO.deleteThongBao(id);
 	}
+	
+	public List<ThongBaoModel> findByClass(String clazz){
+		if(clazz.equals("Tất cả")) {
+			return findAll();
+		}
+		return thongBaoDAO.findByClass(clazz);
+	}
 
 }

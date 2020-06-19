@@ -27,6 +27,10 @@
 	href="<c:url value='/template/admin/css/styles.css' />" />
 <!-- ckeditor -->
 <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
+
+
+<script
+	src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->
@@ -60,11 +64,10 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-	   
+
 
 	<!-- Bootstrap core JavaScript-->
-	<script
-		src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
+
 	<script
 		src="<c:url value='/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js' />"></script>
 	<!-- Core plugin JavaScript-->
@@ -80,6 +83,6 @@
 		src="<c:url value='/template/admin/js/demo/chart-area-demo.js' />"></script>
 	<script
 		src="<c:url value='/template/admin/js/demo/chart-pie-demo.js' />"></script>
-	<script src="<c:url value='/template/js/custom.js' />"></script>
+	<script src="<c:url value='/js/custom.js' />"></script>
 </body>
 </html>

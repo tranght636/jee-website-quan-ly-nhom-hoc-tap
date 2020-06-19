@@ -12,4 +12,11 @@ public interface IDeadlineDAO {
 
 	DeadlineModel findOne(Integer id);
 
+	Integer update(DeadlineModel model);
+
+	Boolean deleteDeadline(Integer id);
+
+	List<DeadlineModel> findByClass(String classDeadline);
+
+
 }

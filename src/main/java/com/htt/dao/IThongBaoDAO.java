@@ -10,5 +10,6 @@ public interface IThongBaoDAO {
 	ThongBaoModel findOne(Integer id);
 	Integer update(ThongBaoModel model);
 	Boolean deleteThongBao(Integer id);
+	List<ThongBaoModel> findByClass(String clazz);
 
 }

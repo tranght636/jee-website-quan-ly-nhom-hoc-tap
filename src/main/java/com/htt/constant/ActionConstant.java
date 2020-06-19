@@ -36,7 +36,12 @@ public class ActionConstant {
 	public static final Object SAVE_EDIT_THONG_BAO = "save_edit_thong_bao";
 	public static final Object DELETE_THONG_BAO = "delete_thong_bao";
 	public static final Object VIEW_THONG_BAO = "view_thong_bao";
+	
 	public static final Object ADD_DEADLINE = "add_deadline";
 	public static final Object EDIT_DEADLINE = "edit_deadline";
+	public static final Object VIEW_DEADLINE = "view_deadline";
+	public static final Object SAVE_EDIT_DEADLINE = "save_edit_deadline";
+	public static final Object DELETE_DEADLINE = "delete_deadline";
+	
 	
 }

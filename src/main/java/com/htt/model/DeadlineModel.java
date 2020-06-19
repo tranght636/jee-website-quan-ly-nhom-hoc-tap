@@ -2,14 +2,16 @@ package com.htt.model;
 
 import java.sql.Timestamp;
 
-public class DeadlineModel extends AbstractModel<ThongBaoModel> {
+public class DeadlineModel extends AbstractModel<DeadlineModel> {
 	private String title;
 	private String content;
 	private String toClass;
 	private Timestamp dueDate;
 	private Boolean isRegister;
-	private int year;
-	private int week;
+	private String weekInYear;
+	//private int year;
+	//private int week;
+	
 	private int status;
 	public String getTitle() {
 		return title;
@@ -42,17 +44,11 @@ public class DeadlineModel extends AbstractModel<ThongBaoModel> {
 	public void setIsRegister(Boolean isRegister) {
 		this.isRegister = isRegister;
 	}
-	public int getYear() {
-		return year;
+	public String getWeekInYear() {
+		return weekInYear;
 	}
-	public void setYear(int year) {
-		this.year = year;
-	}
-	public int getWeek() {
-		return week;
-	}
-	public void setWeek(int week) {
-		this.week = week;
+	public void setWeekInYear(String WeekInYear) {
+		this.weekInYear = WeekInYear;
 	}
 	public int getStatus() {
 		return status;

@@ -22,7 +22,20 @@ function showMessage() {
     $('.span-email-exist').removeAttr('hidden');
     $('.btn-create').attr("disabled", "disabled");
 }
+function goBack() {
+	  window.history.back();
+	}
+//lấy tuần hiện tại
+Date.prototype.getWeekNumber = function(){
+	  var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
+	  var dayNum = d.getUTCDay() || 7;
+	  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+	  var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+	  return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
+};
 var editor='';
+//ckeditor
+editor= CKEDITOR.replace('editorContentThongBao');
 $(document).ready(function() {
     $("#btn-save-change").click(function(event) {
         event.preventDefault();
@@ -244,105 +257,5 @@ $(document).ready(function() {
         });
 
     });
-    //ckeditor
-    editor= CKEDITOR.replace('editorContentThongBao');
-    $("#btn-save-add-Thong-Bao").click(function() {
-        var title = $('#title').val();
-       // var toClass = $('#confirm').val();
-       
-        var data = {
-        		title: title,
-        }
-       data["content"]=editor.getData();
-        $.ajax({
-            url: '/api/thong-bao-deadline?action=add_thong_bao',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function(result) {
-                if (result === true) {
-                    window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadline";
-                } else {
-                    alert("bug");
-                }
-            }
-        });
-    });
-    
-    /* btn sửa tài khoản*/
-    
-    $("#btn-save-edit-Thong-Bao").click(function() {
-    	var idThongBao = $('#thong-bao-id').val();
-        var title = $('#title').val();
-        var data = {
-        		id:idThongBao,
-        		title: title,
-        }
-       data["content"]=editor.getData();
-        $.ajax({
-            url: '/api/thong-bao-deadline?action=save_edit_thong_bao',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function(result) {
-                if (result === true) {
-                    window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadlinemessage=update_thanh_cong&alert=success";
-                } else {
-                	window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadline&message=update_that_bai&alert=warning";
-                    
-                }
-            }
-        });
-    });
-    $(".btndeleteThongBao").click(function() {
-        var idThongBao = $(this).attr("id-Thong-Bao");
-        var This = $(this);
-        var data = {
-            id: idThongBao
-        };
-        $.ajax({
-            url: '/api/thong-bao-deadline?action=delete_thong_bao',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function(result) {
-                if (result === true) {
-                    This.closest("li").remove();
-                } else {
-                    alert("bug");
-                }
-            }
-        });
-
-    });
-    // deadline
-    
-    $("#btn-save-add-Deadline").click(function() {
-        var title = $('#title').val();
-       // var toClass = $('#confirm').val();
-       
-        var data = {
-        		title: title,
-        }
-       data["content"]=editor.getData();
-        $.ajax({
-            url: '/api/thong-bao-deadline?action=add_deadline',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function(result) {
-                if (result === true) {
-                    window.location = "/admin/thong-bao-deadline?action=thong_bao_va_deadline";
-                } else {
-                    alert("bug");
-                }
-            }
-        });
-    });
-    
     
 });
