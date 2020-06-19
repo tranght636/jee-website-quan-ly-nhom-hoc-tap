@@ -32,8 +32,7 @@
 			style="text-align: center; color: black; overflow-x: scroll;">
 			<thead>
 				<tr>
-					<th scope="col" rowspan="2">Họ Tên</th>
-					<th scope="col" rowspan="2">Lớp</th>
+					<th scope="col" rowspan="2">Thời gian</th>
 					<th scope="col" colspan="2">Thứ 2</th>
 					<th scope="col" colspan="2">Thứ 3</th>
 					<th scope="col" colspan="2">Thứ 4</th>
@@ -62,9 +61,6 @@
 			<tbody>
 				<c:forEach var="i" items="${dsDangKyLich}">
 					<tr>
-						<td class="d-flex w-100 justify-content-between">${i.username}
-							<small class="text-muted"></small>
-						</td>
 						<td>${i.className }</td>
 						<td><c:if test='${i.schedule.contains("S2")}'>x</c:if></td>
 						<td><c:if test='${i.schedule.contains("C2")}'>x</c:if></td>

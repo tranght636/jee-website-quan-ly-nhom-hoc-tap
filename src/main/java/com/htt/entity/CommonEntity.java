@@ -26,7 +26,7 @@ public class CommonEntity {
 	
 	@Column("modified_by")
 	Integer modifiedBy;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -58,6 +58,7 @@ public class CommonEntity {
 	public void setModifiedBy(Integer modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
+
 
 	public Timestamp getCreatedDate() {
 		return createdDate;

@@ -14,13 +14,14 @@ import com.htt.constant.ActionConstant;
 import com.htt.service2.ClassesService;
 import com.htt.service2.ThongTinDangKyLichService;
 import com.htt.utils.DispatcherUtil;
+import com.htt.utils.StringUtil;
 
 @WebServlet(urlPatterns = { "/admin/thong-tin-dang-ky-lich","/admin/soan-thoi-khoa-bieu","/admin/thong-tin-xin-nghi"})
 public class LichController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	ThongTinDangKyLichService thongTinDangKyLich;
+	ThongTinDangKyLichService thongTinDangKyLichService;
 	@Inject
 	ClassesService classesService;
 	
@@ -55,25 +56,18 @@ public class LichController extends HttpServlet{
 	}
 
 	private void getThongTinDangKyLich(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		setMessage(req);
-		String clazz = req.getParameter("class");
-		if(clazz != null) {
-			Object dsDangKyLich = thongTinDangKyLich.findByClass(clazz);
+			setMessage(req);
+			String weekInYear = req.getParameter("weekinyear");
+			Object dsDangKyLich;
+			if(StringUtil.isNullOrEmpty(weekInYear)) {
+				 dsDangKyLich = thongTinDangKyLichService.findAll();
+			}else {
+				req.setAttribute("weekInYear", weekInYear);
+				dsDangKyLich = thongTinDangKyLichService.findByWeekInYear(weekInYear);
+			}
 			if (dsDangKyLich != null) {
 				req.setAttribute("dsDangKyLich", dsDangKyLich);
-				req.setAttribute("clazz", clazz);
 			}
-		} else {
-			Object dsDangKyLich = thongTinDangKyLich.findAll();
-			if (dsDangKyLich != null) {
-				req.setAttribute("dsDangKyLich", dsDangKyLich);
-				req.setAttribute("clazz", "TatCa");
-			}
-		}
-//		Object dsClasses = classesService.findAll();
-//		if (dsClasses != null) {
-//			req.setAttribute("dsClasses", dsClasses);
-//		}
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
 	}
 	private void getThoiKhoaBieu(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{

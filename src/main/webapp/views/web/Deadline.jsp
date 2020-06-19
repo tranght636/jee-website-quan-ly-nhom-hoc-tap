@@ -10,12 +10,12 @@
 					class="list-group-item d-flex justify-content-between align-items-center">
 					<div>
 						<a class="a-notification-admin"
-							href='<c:url value="/admin/thong-bao-deadline?action=view_deadline&id=${deadline.id}"/>'>
+
+							href='<c:url value="/thong-bao-deadline?action=view_deadline&id=${deadline.id}"/>'>
 							${deadline.title}</a> <span style="color: #2b2b2b; font-size: 13px;">${deadline.createdDate}</span>
 						<span style="color: #f00; font-size: 16px">*new</span>
-					</div> <a class="edit"
-					href='<c:url value="/admin/thong-bao-deadline?action=edit_deadline&id=${deadline.id}"/>'></a>
-					<i class="delete btndeleteDeadline" id-Deadline="${deadline.id}"></i>
+					</div> 
+
 				</li>
 			</c:forEach>
 		</ul>
