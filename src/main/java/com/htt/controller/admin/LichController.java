@@ -1,6 +1,7 @@
 package com.htt.controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.inject.Inject;
@@ -11,16 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.htt.constant.ActionConstant;
+import com.htt.entity.ThongTinDangKyLichEntity;
 import com.htt.service2.ClassesService;
 import com.htt.service2.ThongTinDangKyLichService;
 import com.htt.utils.DispatcherUtil;
+import com.htt.utils.StringUtil;
 
 @WebServlet(urlPatterns = { "/admin/thong-tin-dang-ky-lich","/admin/soan-thoi-khoa-bieu","/admin/thong-tin-xin-nghi"})
 public class LichController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	ThongTinDangKyLichService thongTinDangKyLich;
+	ThongTinDangKyLichService thongTinDangKyLichService;
 	@Inject
 	ClassesService classesService;
 	
@@ -55,25 +58,32 @@ public class LichController extends HttpServlet{
 	}
 
 	private void getThongTinDangKyLich(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		setMessage(req);
-		String clazz = req.getParameter("class");
-		if(clazz != null) {
-			Object dsDangKyLich = thongTinDangKyLich.findByClass(clazz);
+			setMessage(req);
+			String weekInYear = req.getParameter("weekinyear");
+			Object dsDangKyLich;
+			if(StringUtil.isNullOrEmpty(weekInYear)) {
+				 dsDangKyLich = thongTinDangKyLichService.findAll();
+			}else {
+				req.setAttribute("weekInYear", weekInYear);
+				dsDangKyLich = thongTinDangKyLichService.findByWeekInYear(weekInYear);
+			}
 			if (dsDangKyLich != null) {
 				req.setAttribute("dsDangKyLich", dsDangKyLich);
-				req.setAttribute("clazz", clazz);
 			}
-		} else {
-			Object dsDangKyLich = thongTinDangKyLich.findAll();
-			if (dsDangKyLich != null) {
-				req.setAttribute("dsDangKyLich", dsDangKyLich);
-				req.setAttribute("clazz", "TatCa");
-			}
-		}
-//		Object dsClasses = classesService.findAll();
-//		if (dsClasses != null) {
-//			req.setAttribute("dsClasses", dsClasses);
-//		}
+			
+			/*
+			 * 
+			 ThongTinDangKyLichEntity ThongTinDangKyLichEntity = ConvertUtil.toModelOfAPI(ThongTinDangKyLichEntity.class, req);
+	//		if (thongTinDangKyLichService.findByWeekInYear(ThongTinDangKyLichEntity.getWeekInYear()).size() > 0) {
+	//			DispatcherUtil.send(res, true);
+	//		}
+			List<ThongTinDangKyLichEntity> dsDangKyLich = thongTinDangKyLichService.findByWeekInYear(ThongTinDangKyLichEntity.getWeekInYear());
+			req.setAttribute("dsDangKyLich", dsDangKyLich);
+			DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
+			 */
+			
+			
+			
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ThongTinDangKyLich");
 	}
 	private void getThoiKhoaBieu(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{

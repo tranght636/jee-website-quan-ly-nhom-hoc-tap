@@ -8,13 +8,12 @@ public class ThongTinDangKyLichService {
 	@Inject
 	ThongTinDangKyLichDAO thongTinDangKyLichDAO;
 
-	public Object findByClass(String clazz) {
-		return thongTinDangKyLichDAO.selecList(clazz);
-	}
 	public Object findAll() {
 		return thongTinDangKyLichDAO.selectAllAddName(1);
 	}
-	
 
+	public Object findByWeekInYear(String weekInYear) {
+		return thongTinDangKyLichDAO.selectAllAddName(1, weekInYear);
+	}
 
 }

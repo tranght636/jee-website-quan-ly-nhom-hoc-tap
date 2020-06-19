@@ -28,8 +28,12 @@ created_date TIMESTAMP,
 modified_date TIMESTAMP,
 created_by int,
 modified_by int,
-deactived_at TIMESTAMP -- ngày bị xóa
+deactived_at TIMESTAMP , -- ngày bị xóa
+class_id int
+
 );
+-- alter table users add class_id int;
+ALTER TABLE users ADD CONSTRAINT fk_user_class FOREIGN KEY (class_id) REFERENCES classes(id);
 
 ALTER TABLE users ADD CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role(id);
 
@@ -132,18 +136,6 @@ create table classes ( -- jwat02, jwat03
 -- ALTER TABLE classes  DROP name;
 -- ALTER TABLE classes ADD name nvarchar(255) not null unique;
 
-create table user_in_class( -- lưu thông tin user thuộc lớp nào
-class_id int,
-constraint fk_user_in_class_classes foreign key (class_id ) references classes(id),
-user_id int,
-constraint fk_user_in_class_users foreign key (user_id ) references users(id),
-primary key (class_id, user_id),
-status int,
-created_date TIMESTAMP,
-modified_date TIMESTAMP,
-created_by int,
-modified_by int
-);
 
 create table notifications( -- dùng lưu thông báo
 id int primary key auto_increment,

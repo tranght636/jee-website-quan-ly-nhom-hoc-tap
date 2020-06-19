@@ -23,8 +23,9 @@
 	href="<c:url value='/template/admin/css/sb-admin-2.min.css' />" />
 <link rel="stylesheet"
 	href='<c:url value="/template/vendor/font-awesome/css/font-awesome.min.css"/>' />
-<link rel="stylesheet" href='<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>' />
-            
+<link rel="stylesheet"
+	href='<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>' />
+
 <link rel="stylesheet"
 	href="<c:url value='/template/admin/css/styles.css' />" />
 <!-- ckeditor -->
@@ -33,6 +34,21 @@
 
 <script
 	src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
+<!-- MDBootstrap Datatables  -->
+<link href="<c:url value='/template/vendor/table/datatables.min.css' />" rel="stylesheet">
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="<c:url value='/template/vendor/table/datatables.min.js' />"></script>
+
+<style type="text/css">
+table.dataTable thead .sorting:after, table.dataTable thead .sorting:before,
+	table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc:before,
+	table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_asc_disabled:before,
+	table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc:before,
+	table.dataTable thead .sorting_desc_disabled:after, table.dataTable thead .sorting_desc_disabled:before
+	{
+	bottom: .5em;
+	}
+</style>
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->
