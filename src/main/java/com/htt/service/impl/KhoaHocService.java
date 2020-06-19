@@ -1,5 +1,4 @@
 package com.htt.service.impl;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +14,11 @@ public class KhoaHocService implements IKhoaHocService {
 	@Override
 	public List<KhoaHocModel> findAll() {
 		return khoaHoc.findAll();
+	}
+
+	@Override
+	public KhoaHocModel findOne(Integer id) {
+		return khoaHoc.findOne(id);
 	}
 
 }

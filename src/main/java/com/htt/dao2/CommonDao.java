@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -79,6 +80,10 @@ public class CommonDao<T> {
 					Column column = field.getAnnotation(Column.class);
 					field.setAccessible(true);
 
+					if (!hasColumn(resultSet, column.value())) {
+						continue;
+					}
+
 					Object value = resultSet.getObject(column.value());
 					if (value == null) {
 						continue;
@@ -92,6 +97,8 @@ public class CommonDao<T> {
 						field.set(instance, resultSet.getString(column.value()));
 					} else if (field.getType().isAssignableFrom(Timestamp.class)) {
 						field.set(instance, resultSet.getTimestamp(column.value()));
+					} else if (field.getType().isAssignableFrom(Boolean.class)) {
+						field.set(instance, resultSet.getBoolean(column.value()));
 					}
 				}
 			}
@@ -100,6 +107,16 @@ public class CommonDao<T> {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private boolean hasColumn(ResultSet rs, String column) {
+		try{
+	        rs.findColumn(column);
+	        return true;
+	    } catch (SQLException sqlex){
+	        sqlex.printStackTrace();
+	    }
+	    return false;
 	}
 
 	private void setParameter(PreparedStatement statement, Object... parameters) {
@@ -115,6 +132,8 @@ public class CommonDao<T> {
 					statement.setInt(index, (Integer) parameter);
 				} else if (parameter instanceof Timestamp) {
 					statement.setTimestamp(index, (Timestamp) parameter);
+				} else if (parameter instanceof Boolean) {
+					statement.setBoolean(index, (Boolean) parameter);
 				} else if (parameter == null) {
 					statement.setNull(index, 0);
 				}
@@ -161,7 +180,8 @@ public class CommonDao<T> {
 
 	/**
 	 * if status is null or empty then select all without status condition
-	 * @param status 
+	 * 
+	 * @param status
 	 * @return List<T>
 	 */
 	public List<T> selectAll(Integer... status) {
@@ -177,8 +197,8 @@ public class CommonDao<T> {
 				sql.append(" where status =? ");
 				statement = connection.prepareStatement(sql.toString());
 				statement.setInt(1, status[0]);
-				//setParameter(statement, status[0]);
-			}else {
+				// setParameter(statement, status[0]);
+			} else {
 				statement = connection.prepareStatement(sql.toString());
 			}
 			resultSet = statement.executeQuery();

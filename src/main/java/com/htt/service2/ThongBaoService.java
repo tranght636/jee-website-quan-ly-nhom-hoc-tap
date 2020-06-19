@@ -1,7 +1,5 @@
 package com.htt.service2;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,14 +24,12 @@ public class ThongBaoService {
 	}
 
 	public Integer update(ThongBaoEntity thongBao) {
-		Date now = new Date();
-		Timestamp timestamp = new Timestamp(now.getTime());
-		thongBao.setModifiedDate(timestamp);
 		return thongBaoDAO.updateOne(thongBao);
 	}
 
 	public Integer deleteThongBao(ThongBaoEntity thongBao) {
-		return thongBaoDAO.deleteOne(thongBao);
+		thongBao.setStatus(-1);
+		return thongBaoDAO.updateOne(thongBao);
 	}
 
 	//

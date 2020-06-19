@@ -1,6 +1,6 @@
 package com.htt.constant;
 
-public class ActionConstant {
+public interface  ActionConstant {
 	public static final Object CHECK_SESSION = "check-session";
 	public static final String LOGIN = "login";
 	public static final String REGISTER = "register";
@@ -19,6 +19,9 @@ public class ActionConstant {
 	public static final Object DANH_SACH_LOP = "danhsachlop";
 	public static final Object XEP_LOP = "xeplop";
 	public static final Object CHECK_EMAIL_EXIST = "check_email_exist";
+	
+	public static final Object EDIT = "edit";
+	
 	public static final Object GET_USER = "get_user";
 	public static final Object EDIT_USER = "edit_user";
 	public static final Object DELETE_USER = "delete_user";
@@ -43,5 +46,16 @@ public class ActionConstant {
 	public static final Object SAVE_EDIT_DEADLINE = "save_edit_deadline";
 	public static final Object DELETE_DEADLINE = "delete_deadline";
 	
+	public static interface KHOA_HOC {
+		public static final String CHI_TIET_KHOA_HOC = "chi_tiet_khoa_hoc";
+		public static final String CREATE = "create_khoa_hoc";
+		public static final String UPDATE = "update_khoa_hoc";
+	}
 	
+	public static interface CHI_TIET_KHOA_HOC {
+		public static final String CREATE_GIAI_DOAN = "create_giai_doan";
+		public static final String UPDATE = "update";
+		public static final Object GET_STAGE_BY_COURSE = "get_stage_by_course";
+	}
 }
+

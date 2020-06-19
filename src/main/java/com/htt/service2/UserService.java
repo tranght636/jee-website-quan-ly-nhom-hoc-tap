@@ -59,4 +59,8 @@ public class UserService {
 		//return userDao.selecList("select * from users");
 		return userDao.selectAll(status);
 	}
+	public List<UserEntity> selectList(){
+		String sql = "select username, email, id from users";
+		return userDao.selecList(sql);
+	}
 }
