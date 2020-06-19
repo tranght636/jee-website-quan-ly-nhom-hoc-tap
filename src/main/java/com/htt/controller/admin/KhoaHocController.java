@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.htt.constant.ActionConstant;
 import com.htt.entity.ChapterEntity;
 import com.htt.entity.CourseEntity;
+import com.htt.entity.LessonEntity;
 import com.htt.entity.StageEntity;
 import com.htt.model.KhoaHocModel;
 import com.htt.service.IKhoaHocService;
 import com.htt.service2.ChapterService;
 import com.htt.service2.CourseService;
+import com.htt.service2.LessonService;
 import com.htt.service2.StageService;
 import com.htt.utils.ConvertUtil;
 import com.htt.utils.DispatcherUtil;
@@ -32,11 +34,15 @@ public class KhoaHocController extends HttpServlet{
 	
 	@Inject
 	CourseService courseService;
+	
 	@Inject
 	StageService stageService;
+
 	@Inject
 	ChapterService chapterService;
 	
+	@Inject
+	LessonService lessonService;
 	
 	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 	private void setMessage(HttpServletRequest req) {
@@ -80,14 +86,19 @@ public class KhoaHocController extends HttpServlet{
 
 	private void getChiTietKhoaHoc(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String id = req.getParameter("id");
+		
 		CourseEntity courseEntity = courseService.selectOne(Integer.parseInt(id));
 		req.setAttribute("course", courseEntity);
+		
 		List<StageEntity> stageEntities = stageService.getStageByCourseId(courseEntity.getId());
 		req.setAttribute("stages", stageEntities);
-		if(stageEntities.size() > 0) {
-			List<ChapterEntity> chapterEntities = chapterService.getChapterByCourse(courseEntity.getId());
-			req.setAttribute("chapters", chapterEntities);
-		}
+		
+		List<ChapterEntity> chapterEntities = chapterService.getChapterByCourse(courseEntity.getId());
+		req.setAttribute("chapters", chapterEntities);
+		
+		List<LessonEntity> lessonEntities = lessonService.getLessonByCourse(courseEntity.getId());
+		req.setAttribute("lessons", lessonEntities);
+		
 		DispatcherUtil.returnViewNameAdminAndSetPageName(req, res, "ChiTietKhoaHoc");
 	}
 

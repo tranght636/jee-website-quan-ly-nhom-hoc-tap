@@ -24,15 +24,14 @@
 <link rel="stylesheet"
 	href='<c:url value="/template/vendor/font-awesome/css/font-awesome.min.css"/>' />
 <link rel="stylesheet" href='<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>' />
-            
-<link rel="stylesheet"
-	href="<c:url value='/template/admin/css/styles.css' />" />
+<link rel="stylesheet" href="<c:url value='/template/loader/jquery.loadingModal.css' />" />
+
+<link rel="stylesheet" href="<c:url value='/template/admin/css/styles.css' />" />
 <!-- ckeditor -->
 <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
-
-
-<script
-	src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
+<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js' />"></script>
+<%-- <script src="<c:url value='/template/loader/jquery-3.1.1.slim.min.js' />"></script>
+<script src="<c:url value='/template/loader/jquery.loadingModal.js' />"></script> --%>
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->

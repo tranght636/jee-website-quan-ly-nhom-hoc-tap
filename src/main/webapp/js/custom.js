@@ -258,4 +258,51 @@ $(document).ready(function() {
 
     });
     
+    /*Khoá học*/
+    $('#btn-course-create').click(function() {
+        $('#course-modal').attr('action', '/admin/khoa-hoc?action=create_khoa_hoc');
+    });
+
+    $('.btn-edit-courses').click(function() {
+        $('#course-modal').attr('action', '/admin/khoa-hoc?action=update_khoa_hoc');
+        var data = {
+            id: $(this).attr('id-course')
+        };
+        $.ajax({
+            url: '/api/khoa-hoc',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result !== null) {
+                    $("#course-id").val(result.id);
+                    $("#courses-name").val(result.name);
+                    $("#courses-start-time").val(formatDate(result.startTime));
+                    $("#courses-end-time").val(formatDate(result.endTime));
+                    $("#courses-description").val(result.description);
+                    $("#courses-note").val(result.note);
+                }
+            }
+        });
+    });
+
+    $('.btn-delete-courses').click(function() {
+        var data = {
+            id: $(this).attr('id-course')
+        };
+        $.ajax({
+            url: '/api/khoa-hoc',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function(result) {
+                if (result > -1) {
+                    window.location = '/admin/khoa-hoc';
+                }
+            }
+        });
+    });
+    
 });

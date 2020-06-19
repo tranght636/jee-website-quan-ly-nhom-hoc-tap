@@ -7,7 +7,7 @@ import com.htt.entity.StageEntity;
 public class StageDao extends CommonDao<StageEntity> {
 
 	public List<StageEntity> getStageByCourseId(Integer id) {
-		String sql = "select * from stage where courses_id = ?";
+		String sql = "select * from stage where courses_id = ? and status = 1";
 		return selecList(sql, id);
 	}
 
